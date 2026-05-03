@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const base = process.env.BASE_PATH ?? '/curiosity-map/';
-
+// Site lives at https://rishabhramteke.github.io/curiosity-map/
 export default defineConfig({
   plugins: [react()],
-  base,
+  base: '/curiosity-map/',
 });
