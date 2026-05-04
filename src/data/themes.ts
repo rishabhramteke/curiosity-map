@@ -1,14 +1,16 @@
 import type { Theme, ThemeId } from '../types';
 
+// Order matters — themes are placed clockwise around the canvas in this
+// sequence (see clusterCenters in utils/simulation.ts).
 export const THEMES: Theme[] = [
   {
     id: 'ai',
-    label: 'AI rabbit holes',
+    label: 'AI & data',
     star: '#c7d2fe',
     glow: '#a5b4fc',
     line: 'rgba(165,180,252,0.45)',
     ink: '#c7d2fe',
-    blurb: 'papers, models, weird tools',
+    blurb: 'models, papers, datasets',
   },
   {
     id: 'music',
@@ -17,7 +19,7 @@ export const THEMES: Theme[] = [
     glow: '#facc15',
     line: 'rgba(252,211,77,0.5)',
     ink: '#fde68a',
-    blurb: 'instruments, gigs, listening',
+    blurb: 'vinyl, listening, gigs',
   },
   {
     id: 'travel',
@@ -26,25 +28,43 @@ export const THEMES: Theme[] = [
     glow: '#34d399',
     line: 'rgba(110,231,183,0.45)',
     ink: '#a7f3d0',
-    blurb: 'places, trips, seasons',
+    blurb: 'trips, stays, slow days',
   },
   {
-    id: 'books',
-    label: 'Books',
+    id: 'pages',
+    label: 'Pages',
     star: '#fbcfe8',
     glow: '#f472b6',
     line: 'rgba(244,114,182,0.45)',
     ink: '#fbcfe8',
-    blurb: 'reading list, worlds',
+    blurb: 'reading and writing',
   },
   {
-    id: 'tech',
-    label: 'Tech tinkering',
+    id: 'making',
+    label: 'Making',
     star: '#fdba74',
     glow: '#fb923c',
     line: 'rgba(251,146,60,0.45)',
     ink: '#fdba74',
-    blurb: 'side projects, hardware',
+    blurb: 'hardware, tools, the house',
+  },
+  {
+    id: 'movement',
+    label: 'Movement',
+    star: '#bef264',
+    glow: '#84cc16',
+    line: 'rgba(132,204,22,0.5)',
+    ink: '#bef264',
+    blurb: 'sport, dance, fight, glide',
+  },
+  {
+    id: 'social',
+    label: 'Social',
+    star: '#7dd3fc',
+    glow: '#38bdf8',
+    line: 'rgba(56,189,248,0.5)',
+    ink: '#7dd3fc',
+    blurb: 'people, games, hosting',
   },
 ];
 

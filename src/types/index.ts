@@ -1,4 +1,12 @@
-export type ThemeId = 'ai' | 'music' | 'travel' | 'books' | 'tech';
+export type ThemeId =
+  | 'ai'
+  | 'music'
+  | 'travel'
+  | 'pages'
+  | 'making'
+  | 'movement'
+  | 'social';
+
 export type Status = 'idea' | 'doing' | 'done';
 
 export interface Curiosity {
