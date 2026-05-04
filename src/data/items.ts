@@ -60,6 +60,14 @@ export const ITEMS: Curiosity[] = [
     theme: 'ai',
     status: 'idea',
   },
+  {
+    id: 'ai-leetcode',
+    title: 'Stay sharp on coding (LeetCode habit)',
+    description:
+      'Steady, not crammed. A few problems a week. Goal isn\'t grind — it\'s not letting the muscle atrophy.',
+    theme: 'ai',
+    status: 'idea',
+  },
 
   // ─── Music ────────────────────────────────────────────────────────────
   {
@@ -147,26 +155,18 @@ export const ITEMS: Curiosity[] = [
     status: 'idea',
   },
   {
-    id: 'pag-words',
-    title: '500 words a day',
-    description:
-      'Doesn\'t have to be the novel. Habit > output. Throwaway pages count.',
-    theme: 'pages',
-    status: 'idea',
-  },
-  {
-    id: 'pag-norse',
-    title: 'Soak in Nordic literature',
-    description:
-      'For Ariel\'s voice. Sigrid Undset, Knut Hamsun, the Eddas. Let the cadence seep in.',
-    theme: 'pages',
-    status: 'idea',
-  },
-  {
     id: 'pag-list',
     title: 'Build a reading list',
     description:
       'I don\'t know what to read next. Recommend me anything — fiction, philosophy, weird non-fiction, all welcome.',
+    theme: 'pages',
+    status: 'idea',
+  },
+  {
+    id: 'pag-fairytales',
+    title: 'Collect a fairy-tale book from every country I visit',
+    description:
+      'Local folk and fairy tales, picked up wherever I land. Original language is fine — illustrated counts. A shelf of other people\'s stories.',
     theme: 'pages',
     status: 'idea',
   },
