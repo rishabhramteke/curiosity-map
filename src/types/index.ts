@@ -8,7 +8,9 @@ export type ThemeId =
   | 'movement'
   | 'social';
 
-export type Status = 'idea' | 'doing' | 'done';
+export type Status = 'todo' | 'doing' | 'review' | 'done';
+
+export const STATUS_ORDER: Status[] = ['todo', 'doing', 'review', 'done'];
 
 export interface Curiosity {
   id: string;
