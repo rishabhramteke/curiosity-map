@@ -57,10 +57,6 @@ export default function DetailPanel({ item, onClose }: Props) {
           Open link ↗
         </a>
       )}
-
-      <div className="mt-auto pt-4 text-xs text-slate-500">
-        Edit <code className="rounded bg-white/5 px-1">src/data/items.ts</code> to change this card.
-      </div>
     </aside>
   );
 }

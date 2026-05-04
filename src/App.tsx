@@ -85,11 +85,6 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="relative z-10 mx-auto max-w-6xl px-6 py-4 text-xs text-slate-500">
-        Edit <code className="rounded bg-white/5 px-1">src/data/items.ts</code> to add or change
-        curiosities. Themes live in <code className="rounded bg-white/5 px-1">src/data/themes.ts</code>.
-      </footer>
-
       {selected && <DetailPanel item={selected} onClose={() => setSelected(null)} />}
     </div>
   );
