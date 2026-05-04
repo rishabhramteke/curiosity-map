@@ -1,5 +1,13 @@
+import { useEffect, useState } from 'react';
 import { THEME_BY_ID } from '../data/themes';
 import type { Curiosity } from '../types';
+import type { Recommendation } from '../types/recommendation';
+import {
+  isDemoMode,
+  listenForRecommendations,
+} from '../services/recommendations';
+import RecommendationList from './RecommendationList';
+import RecommendationForm from './RecommendationForm';
 
 interface Props {
   item: Curiosity;
@@ -14,49 +22,94 @@ const STATUS_LABEL: Record<string, string> = {
 
 export default function DetailPanel({ item, onClose }: Props) {
   const palette = THEME_BY_ID[item.theme];
+  const [recs, setRecs] = useState<Recommendation[]>([]);
+
+  useEffect(() => {
+    setRecs([]);
+    const unsubscribe = listenForRecommendations(item.id, setRecs);
+    return unsubscribe;
+  }, [item.id]);
+
+  const demo = isDemoMode();
+
   return (
-    <aside className="pointer-events-auto fixed inset-y-0 right-0 z-20 flex w-full max-w-sm flex-col gap-4 border-l border-white/10 bg-slate-950/85 p-6 shadow-2xl backdrop-blur-md animate-slide-in sm:w-96">
-      <header className="flex items-start justify-between gap-3">
-        <div>
-          <span
-            className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
-            style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: palette.ink }}
+    <aside
+      className="pointer-events-auto fixed inset-y-0 right-0 z-20 flex w-full max-w-sm flex-col border-l border-white/10 bg-slate-950/85 shadow-2xl backdrop-blur-md animate-slide-in sm:w-[28rem]"
+    >
+      {/* Header / curiosity content (top, fixed height) */}
+      <div className="flex flex-col gap-3 p-6 pb-4">
+        <header className="flex items-start justify-between gap-3">
+          <div>
+            <span
+              className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+              style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: palette.ink }}
+            >
+              {palette.label}
+            </span>
+            <h3 className="mt-2 font-display text-2xl font-bold leading-snug text-white">
+              {item.title}
+            </h3>
+          </div>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="-m-1 grid h-8 w-8 shrink-0 place-items-center rounded-full text-slate-400 transition hover:bg-white/5 hover:text-white"
           >
-            {palette.label}
+            ✕
+          </button>
+        </header>
+
+        <p className="text-sm font-semibold" style={{ color: palette.ink }}>
+          {STATUS_LABEL[item.status] ?? item.status}
+        </p>
+
+        <p className="text-sm leading-relaxed text-slate-200">{item.description}</p>
+
+        {item.note && (
+          <p className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm italic text-slate-300">
+            {item.note}
+          </p>
+        )}
+
+        {item.link && (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-medium text-white transition hover:bg-white/20"
+          >
+            Open link ↗
+          </a>
+        )}
+      </div>
+
+      {/* Recommendations heading */}
+      <div className="flex items-baseline justify-between border-t border-white/10 px-6 pt-4 pb-2">
+        <h4 className="font-display text-base font-bold text-white">
+          Recommend me ✨
+        </h4>
+        {recs.length > 0 && (
+          <span className="text-[11px] text-slate-400">
+            {recs.length} {recs.length === 1 ? 'suggestion' : 'suggestions'}
           </span>
-          <h3 className="mt-2 font-display text-2xl font-bold text-white">{item.title}</h3>
-        </div>
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          className="-m-1 grid h-8 w-8 place-items-center rounded-full text-slate-400 transition hover:bg-white/5 hover:text-white"
-        >
-          ✕
-        </button>
-      </header>
+        )}
+      </div>
 
-      <p className="text-sm font-semibold" style={{ color: palette.ink }}>
-        {STATUS_LABEL[item.status] ?? item.status}
-      </p>
-
-      <p className="text-base leading-relaxed text-slate-200">{item.description}</p>
-
-      {item.note && (
-        <p className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm italic text-slate-300">
-          {item.note}
+      {demo && (
+        <p className="mx-6 mb-2 rounded-xl border border-amber-300/20 bg-amber-500/[0.06] px-3 py-2 text-[11px] text-amber-200/85">
+          Demo mode — recommendations only saved on this device. Wire up Firebase to share them.
         </p>
       )}
 
-      {item.link && (
-        <a
-          href={item.link}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20"
-        >
-          Open link ↗
-        </a>
-      )}
+      {/* Scrollable recommendations list (grows to fill) */}
+      <div className="flex-1 overflow-y-auto px-6 pb-3">
+        <RecommendationList recs={recs} palette={palette} />
+      </div>
+
+      {/* Form pinned to the bottom */}
+      <div className="border-t border-white/10 bg-slate-950/60 p-4">
+        <RecommendationForm curiosityId={item.id} palette={palette} />
+      </div>
     </aside>
   );
 }
