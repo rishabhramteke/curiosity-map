@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 import { THEME_BY_ID } from '../data/themes';
 import type { Curiosity } from '../types';
 import type { Recommendation } from '../types/recommendation';
-import {
-  isDemoMode,
-  listenForRecommendations,
-} from '../services/recommendations';
+import { listenForRecommendations } from '../services/recommendations';
 import RecommendationList from './RecommendationList';
 import RecommendationForm from './RecommendationForm';
 
@@ -30,13 +27,11 @@ export default function DetailPanel({ item, onClose }: Props) {
     return unsubscribe;
   }, [item.id]);
 
-  const demo = isDemoMode();
-
   return (
     <aside
       className="pointer-events-auto fixed inset-y-0 right-0 z-20 flex w-full max-w-sm flex-col border-l border-white/10 bg-slate-950/85 shadow-2xl backdrop-blur-md animate-slide-in sm:w-[28rem]"
     >
-      {/* Header / curiosity content (top, fixed height) */}
+      {/* Header / curiosity content */}
       <div className="flex flex-col gap-3 p-6 pb-4">
         <header className="flex items-start justify-between gap-3">
           <div>
@@ -95,20 +90,18 @@ export default function DetailPanel({ item, onClose }: Props) {
         )}
       </div>
 
-      {demo && (
-        <p className="mx-6 mb-2 rounded-xl border border-amber-300/20 bg-amber-500/[0.06] px-3 py-2 text-[11px] text-amber-200/85">
-          Demo mode — recommendations only saved on this device. Wire up Firebase to share them.
-        </p>
-      )}
-
-      {/* Scrollable recommendations list (grows to fill) */}
+      {/* Scrollable list */}
       <div className="flex-1 overflow-y-auto px-6 pb-3">
         <RecommendationList recs={recs} palette={palette} />
       </div>
 
       {/* Form pinned to the bottom */}
       <div className="border-t border-white/10 bg-slate-950/60 p-4">
-        <RecommendationForm curiosityId={item.id} palette={palette} />
+        <RecommendationForm
+          curiosityId={item.id}
+          curiosityTitle={item.title}
+          palette={palette}
+        />
       </div>
     </aside>
   );

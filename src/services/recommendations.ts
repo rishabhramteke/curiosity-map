@@ -1,124 +1,113 @@
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
-  where,
-} from 'firebase/firestore';
-import { db, isFirebaseConfigured } from '../firebase';
+// Recommendations are stored as GitHub Issues on the curiosity-map repo,
+// labelled 'recommendation'. Visitors submit via a prefilled "new issue"
+// deep-link (no token, no infra). The site reads issues anonymously via the
+// public REST API and re-fetches when the window regains focus, so a new
+// suggestion appears as soon as the visitor returns from github.com.
+
 import type { Recommendation, RecommendationDraft } from '../types/recommendation';
 
-const COLLECTION = 'recommendations';
-const LS_KEY = 'curiosity-map.recs.v1';
-const LS_EVENT = 'curiosity-rec-changed';
+const REPO = 'rishabhramteke/curiosity-map';
+const LABEL = 'recommendation';
 
-interface SerializedRec {
-  id: string;
-  curiosityId: string;
-  body: string;
-  authorName?: string;
-  createdAt: string;
+const ISSUES_API = `https://api.github.com/repos/${REPO}/issues?labels=${LABEL}&state=all&per_page=100&sort=created&direction=desc`;
+
+const CURIOSITY_MARKER = /<!--\s*curiosity:([\w.-]+)\s*-->/i;
+const FROM_MARKER = /^\*\*Recommended by:\*\*\s*(.+?)\s*$/m;
+
+export interface RawIssue {
+  number: number;
+  title: string;
+  body: string | null;
+  state: string;
+  created_at: string;
 }
 
-export function isDemoMode(): boolean {
-  return !isFirebaseConfigured;
-}
-
-export async function addRecommendation(draft: RecommendationDraft): Promise<void> {
-  const body = draft.body.trim();
-  if (!body) throw new Error('A recommendation is required.');
-  if (body.length > 500) throw new Error('Recommendation must be 500 characters or fewer.');
-
-  const authorName = draft.authorName?.trim();
-  if (authorName && authorName.length > 40) {
-    throw new Error('Name must be 40 characters or fewer.');
-  }
-
-  if (db) {
-    await addDoc(collection(db, COLLECTION), {
-      curiosityId: draft.curiosityId,
-      body,
-      ...(authorName ? { authorName } : {}),
-      createdAt: serverTimestamp(),
-    });
-    return;
-  }
-
-  // Demo mode — save to localStorage and notify any open listeners.
-  const all = readLocal();
-  all.push({
-    id: `local-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-    curiosityId: draft.curiosityId,
+export function buildIssueUrl(
+  draft: RecommendationDraft,
+  curiosityTitle: string
+): string {
+  const author = (draft.authorName?.trim() || 'Anonymous').slice(0, 40);
+  const body = draft.body.trim().slice(0, 500);
+  const title = `Rec for "${truncate(curiosityTitle, 80)}"`;
+  const bodyText = [
+    `**Recommended by:** ${author}`,
+    '',
     body,
-    authorName,
-    createdAt: new Date().toISOString(),
+    '',
+    `<!-- curiosity:${draft.curiosityId} -->`,
+  ].join('\n');
+  const params = new URLSearchParams({
+    title,
+    body: bodyText,
+    labels: LABEL,
   });
-  writeLocal(all);
-  window.dispatchEvent(new Event(LS_EVENT));
+  return `https://github.com/${REPO}/issues/new?${params.toString()}`;
+}
+
+export async function fetchAllRecommendations(): Promise<Recommendation[]> {
+  const res = await fetch(ISSUES_API, {
+    headers: { Accept: 'application/vnd.github+json' },
+  });
+  if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+  const issues = (await res.json()) as RawIssue[];
+  return issues
+    .filter((i) => i.state === 'open') // closed ones are moderated away
+    .map(parseIssue)
+    .filter((r): r is Recommendation => r !== null);
 }
 
 export function listenForRecommendations(
   curiosityId: string,
   onChange: (recs: Recommendation[]) => void
 ): () => void {
-  if (db) {
-    const q = query(
-      collection(db, COLLECTION),
-      where('curiosityId', '==', curiosityId),
-      orderBy('createdAt', 'desc')
-    );
-    return onSnapshot(q, (snap) => {
-      const recs: Recommendation[] = snap.docs.map((d) => {
-        const data = d.data() as {
-          curiosityId: string;
-          body: string;
-          authorName?: string;
-          createdAt?: Timestamp;
-        };
-        return {
-          id: d.id,
-          curiosityId: data.curiosityId,
-          body: data.body,
-          authorName: data.authorName,
-          createdAt: data.createdAt?.toDate() ?? new Date(),
-        };
-      });
-      onChange(recs);
-    });
-  }
+  let cancelled = false;
 
-  // Demo mode — read once + listen for the local mutation event.
-  const update = () => {
-    const recs: Recommendation[] = readLocal()
-      .filter((r) => r.curiosityId === curiosityId)
-      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-      .map((r) => ({ ...r, createdAt: new Date(r.createdAt) }));
-    onChange(recs);
+  const update = async () => {
+    try {
+      const all = await fetchAllRecommendations();
+      if (cancelled) return;
+      onChange(all.filter((r) => r.curiosityId === curiosityId));
+    } catch {
+      // GitHub rate limit (60/hr per IP unauth) or transient — ignore;
+      // the next focus event will retry.
+    }
   };
+
   update();
-  const handler = () => update();
-  window.addEventListener(LS_EVENT, handler);
-  return () => window.removeEventListener(LS_EVENT, handler);
+
+  const onFocus = () => {
+    update();
+  };
+  window.addEventListener('focus', onFocus);
+
+  return () => {
+    cancelled = true;
+    window.removeEventListener('focus', onFocus);
+  };
 }
 
-function readLocal(): SerializedRec[] {
-  try {
-    const raw = localStorage.getItem(LS_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as SerializedRec[]) : [];
-  } catch {
-    return [];
-  }
+function parseIssue(issue: RawIssue): Recommendation | null {
+  if (!issue.body) return null;
+  const curiosityMatch = issue.body.match(CURIOSITY_MARKER);
+  if (!curiosityMatch) return null;
+  const fromMatch = issue.body.match(FROM_MARKER);
+  const rawAuthor = fromMatch?.[1]?.trim();
+  const authorName =
+    rawAuthor && rawAuthor.toLowerCase() !== 'anonymous' ? rawAuthor : undefined;
+  const cleanedBody = issue.body
+    .replace(CURIOSITY_MARKER, '')
+    .replace(FROM_MARKER, '')
+    .trim();
+  if (!cleanedBody) return null;
+  return {
+    id: String(issue.number),
+    curiosityId: curiosityMatch[1],
+    body: cleanedBody,
+    authorName,
+    createdAt: new Date(issue.created_at),
+  };
 }
 
-function writeLocal(recs: SerializedRec[]): void {
-  try {
-    localStorage.setItem(LS_KEY, JSON.stringify(recs));
-  } catch {
-    /* quota / privacy mode — ignore */
-  }
+function truncate(s: string, n: number): string {
+  return s.length > n ? s.slice(0, n - 1) + '…' : s;
 }
