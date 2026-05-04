@@ -1,0 +1,36 @@
+rules_version = '2';
+
+// Curiosity Map — public-read, public-create recommendations.
+// No auth, no updates, no deletes from clients. Field shape and length caps
+// are enforced server-side here so we don't trust the browser.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /recommendations/{recId} {
+      allow read: if true;
+
+      allow create: if request.resource.data.keys().hasOnly(
+                        ['curiosityId', 'body', 'authorName', 'createdAt']
+                      )
+                    && request.resource.data.keys().hasAll(
+                        ['curiosityId', 'body', 'createdAt']
+                      )
+                    && request.resource.data.curiosityId is string
+                    && request.resource.data.curiosityId.size() > 0
+                    && request.resource.data.curiosityId.size() <= 80
+                    && request.resource.data.body is string
+                    && request.resource.data.body.size() > 0
+                    && request.resource.data.body.size() <= 500
+                    && (
+                         !('authorName' in request.resource.data) ||
+                         (
+                           request.resource.data.authorName is string
+                           && request.resource.data.authorName.size() <= 40
+                         )
+                       )
+                    && request.resource.data.createdAt is timestamp;
+
+      allow update, delete: if false;
+    }
+  }
+}
