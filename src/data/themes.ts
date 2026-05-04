@@ -49,6 +49,15 @@ export const THEMES: Theme[] = [
     blurb: 'hardware, tools, the house',
   },
   {
+    id: 'wishlist',
+    label: 'Wishlist',
+    star: '#ddd6fe',
+    glow: '#a78bfa',
+    line: 'rgba(167,139,250,0.45)',
+    ink: '#ddd6fe',
+    blurb: 'things to own someday',
+  },
+  {
     id: 'movement',
     label: 'Movement',
     star: '#bef264',

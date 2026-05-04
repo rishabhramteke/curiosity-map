@@ -79,10 +79,10 @@ export const ITEMS: Curiosity[] = [
     status: 'doing',
   },
   {
-    id: 'mus-album',
-    title: 'One full album a week',
+    id: 'mus-playlists',
+    title: 'Sort my Spotify + craft roadtrip playlists',
     description:
-      'No skips, no shuffle. Liner notes if I can find them. Probably one new + one old per month.',
+      'Untangle the mega-playlist into properly-themed ones. Then curate roadtrip mixes — South America, Camino, anywhere with hours of road ahead.',
     theme: 'music',
     status: 'idea',
   },
@@ -210,6 +210,32 @@ export const ITEMS: Curiosity[] = [
     description:
       'Cable holders, drawer dividers, weird brackets. Once the printer arrives, scratch every "I wish there was a thing for…" itch.',
     theme: 'making',
+    status: 'idea',
+  },
+
+  // ─── Wishlist ─────────────────────────────────────────────────────────
+  {
+    id: 'wsh-mx5',
+    title: 'Mazda MX-5',
+    description:
+      'NA or NB. Manual. Probably second-hand and not red. The little roadster keeps showing up in my head — no rush, find the right one.',
+    theme: 'wishlist',
+    status: 'idea',
+  },
+  {
+    id: 'wsh-espresso',
+    title: 'A proper espresso machine',
+    description:
+      'For the new house. Step up from a Bambino — Lelit, Profitec, something I\'ll grow into. Stop renting espresso from cafés.',
+    theme: 'wishlist',
+    status: 'idea',
+  },
+  {
+    id: 'wsh-camera',
+    title: 'A real travel camera',
+    description:
+      'Light, weather-sealed, photo-only. Fuji X100VI is the obvious pick. Phone stays in the pocket — let this thing earn its strap.',
+    theme: 'wishlist',
     status: 'idea',
   },
 
