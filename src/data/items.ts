@@ -231,10 +231,10 @@ export const ITEMS: Curiosity[] = [
     status: 'idea',
   },
   {
-    id: 'wsh-camera',
-    title: 'A real travel camera',
+    id: 'wsh-300mm',
+    title: '300mm lens for the Sony a6400',
     description:
-      'Light, weather-sealed, photo-only. Fuji X100VI is the obvious pick. Phone stays in the pocket — let this thing earn its strap.',
+      'Already have the 135mm. A 300 unlocks wildlife, distant mountains, candid street. Probably the Sony 70-350 G or the Tamron 70-300.',
     theme: 'wishlist',
     status: 'idea',
   },
@@ -287,6 +287,14 @@ export const ITEMS: Curiosity[] = [
       'Trial class somewhere local. Sweat ≠ drudgery. See if it scratches the rapier itch in a different shape.',
     theme: 'movement',
     status: 'idea',
+  },
+  {
+    id: 'mov-photo',
+    title: 'Lean into photography',
+    description:
+      'Sony a6400 + 135mm already in the bag. Shoot on purpose, not just when traveling — one walk-and-shoot a week, even at home.',
+    theme: 'movement',
+    status: 'doing',
   },
 
   // ─── Social ───────────────────────────────────────────────────────────
