@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import type { Simulation } from 'd3-force';
 import { THEMES, THEME_BY_ID } from '../data/themes';
 import type { Curiosity, PositionedCuriosity } from '../types';
 import {
@@ -50,6 +51,7 @@ export default function ConstellationMap({ items, width, height, onSelect, selec
   const [links, setLinks] = useState<SimLink[]>([]);
   const positionsRef = useRef(positions);
   positionsRef.current = positions;
+  const simRef = useRef<Simulation<PositionedCuriosity, undefined> | null>(null);
 
   // Background twinkle dots — generated once.
   const bgStars = useMemo<BackgroundStar[]>(() => {
@@ -76,6 +78,7 @@ export default function ConstellationMap({ items, width, height, onSelect, selec
   useEffect(() => {
     const centers = clusterCenters(THEMES.map((t) => t.id), width, height);
     const sim = createSimulation(positionsRef.current, centers);
+    simRef.current = sim;
 
     sim.on('tick', () => {
       setPositions([...positionsRef.current]);
@@ -91,15 +94,19 @@ export default function ConstellationMap({ items, width, height, onSelect, selec
     return () => {
       window.clearTimeout(linkTimer);
       sim.stop();
+      simRef.current = null;
     };
     // re-run only on canvas resize
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, height]);
 
-  // Drag-to-pin handler.
+  // Drag-to-pin handler. Reheat the simulation on dragstart so ticks resume,
+  // mutate fx/fy on pointermove, and let it cool down on pointerup. This is
+  // the standard d3-drag pattern adapted to React pointer events.
   function handleDragStart(id: string) {
     return (event: React.PointerEvent<SVGGElement>) => {
       event.stopPropagation();
+      event.preventDefault();
       const svg = (event.currentTarget.ownerSVGElement as SVGSVGElement) ?? null;
       if (!svg) return;
       const ctm = svg.getScreenCTM();
@@ -108,26 +115,46 @@ export default function ConstellationMap({ items, width, height, onSelect, selec
 
       const node = positionsRef.current.find((n) => n.id === id);
       if (!node) return;
+
+      let moved = false;
+      const startClientX = event.clientX;
+      const startClientY = event.clientY;
+
+      // Reheat: kicks the simulation back into ticking even if it had cooled
+      // to alpha < alphaMin (otherwise dragging mutates fx/fy invisibly).
+      simRef.current?.alphaTarget(0.3).restart();
       node.fx = node.x;
       node.fy = node.y;
 
+      const toSvgPoint = (clientX: number, clientY: number) => {
+        const p = svg.createSVGPoint();
+        p.x = clientX;
+        p.y = clientY;
+        return p.matrixTransform(inverse);
+      };
+
       const move = (e: PointerEvent) => {
-        const point = svg.createSVGPoint();
-        point.x = e.clientX;
-        point.y = e.clientY;
-        const p = point.matrixTransform(inverse);
-        node.fx = p.x;
-        node.fy = p.y;
+        if (!moved) {
+          const dx = e.clientX - startClientX;
+          const dy = e.clientY - startClientY;
+          if (dx * dx + dy * dy > 9) moved = true; // 3px deadzone before treating as drag
+        }
+        const p = toSvgPoint(e.clientX, e.clientY);
+        node.fx = Math.max(8, Math.min(width - 8, p.x));
+        node.fy = Math.max(8, Math.min(height - 8, p.y));
       };
       const up = () => {
         window.removeEventListener('pointermove', move);
         window.removeEventListener('pointerup', up);
-        // release the pin so the simulation reclaims it
+        window.removeEventListener('pointercancel', up);
+        // Cool the simulation back down and release the pin.
+        simRef.current?.alphaTarget(0);
         node.fx = null;
         node.fy = null;
       };
       window.addEventListener('pointermove', move);
       window.addEventListener('pointerup', up, { once: true });
+      window.addEventListener('pointercancel', up, { once: true });
     };
   }
 
