@@ -4,6 +4,7 @@ export type ThemeId =
   | 'travel'
   | 'pages'
   | 'making'
+  | 'wishlist'
   | 'movement'
   | 'social';
 
