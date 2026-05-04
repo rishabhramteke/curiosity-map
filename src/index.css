@@ -29,3 +29,31 @@ h1, h2, h3 {
 body {
   overflow-x: hidden;
 }
+
+/* Constellation toggle states.
+   - star-active: the default, full-vibrance look.
+   - star-muted:  cluster has been toggled off — keep stars on the canvas
+                  but de-emphasise them so the active clusters are the focus.
+   - star-pop:    plays once for ~2 s when a cluster is toggled back on. */
+.star-active,
+.star-muted {
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+.star-muted {
+  opacity: 0.22;
+  filter: saturate(0.35);
+}
+.star-active {
+  opacity: 1;
+  filter: saturate(1);
+}
+@keyframes star-pop {
+  0%   { transform: scale(1); }
+  18%  { transform: scale(1.55); }
+  42%  { transform: scale(0.92); }
+  64%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.star-pop {
+  animation: star-pop 2s ease-out;
+}

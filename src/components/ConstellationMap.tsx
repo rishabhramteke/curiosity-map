@@ -12,12 +12,16 @@ import {
 import StarNode from './StarNode';
 import Tooltip from './Tooltip';
 
+import type { ThemeId } from '../types';
+
 interface Props {
   items: Curiosity[];
   width: number;
   height: number;
   onSelect: (item: Curiosity) => void;
   selectedId: string | null;
+  mutedThemes: Set<ThemeId>;
+  poppingTheme: ThemeId | null;
 }
 
 interface BackgroundStar {
@@ -27,7 +31,15 @@ interface BackgroundStar {
   delay: number;
 }
 
-export default function ConstellationMap({ items, width, height, onSelect, selectedId }: Props) {
+export default function ConstellationMap({
+  items,
+  width,
+  height,
+  onSelect,
+  selectedId,
+  mutedThemes,
+  poppingTheme,
+}: Props) {
   // Stable initial positions, scattered around their cluster centres so the
   // simulation has somewhere to start (avoids the chaotic "everyone at 0,0"
   // first frame).
@@ -218,6 +230,7 @@ export default function ConstellationMap({ items, width, height, onSelect, selec
           const b = positionById.get(link.target);
           if (!a || !b) return null;
           const palette = THEME_BY_ID[link.theme];
+          const muted = mutedThemes.has(link.theme);
           return (
             <line
               key={i}
@@ -227,6 +240,8 @@ export default function ConstellationMap({ items, width, height, onSelect, selec
               y2={b.y}
               stroke={palette.line}
               strokeWidth={0.9}
+              opacity={muted ? 0.18 : 1}
+              style={{ transition: 'opacity 0.4s ease' }}
             />
           );
         })}
@@ -234,22 +249,26 @@ export default function ConstellationMap({ items, width, height, onSelect, selec
 
       {/* cluster labels */}
       <g>
-        {clusterLabels.map((label) => (
-          <text
-            key={label.theme.id}
-            x={label.x}
-            y={label.y}
-            textAnchor="middle"
-            fontFamily="Quicksand, Inter, sans-serif"
-            fontSize={11}
-            fontWeight={700}
-            fill={label.theme.ink}
-            opacity={0.85}
-            className="pointer-events-none"
-          >
-            {label.theme.label}
-          </text>
-        ))}
+        {clusterLabels.map((label) => {
+          const muted = mutedThemes.has(label.theme.id);
+          return (
+            <text
+              key={label.theme.id}
+              x={label.x}
+              y={label.y}
+              textAnchor="middle"
+              fontFamily="Quicksand, Inter, sans-serif"
+              fontSize={11}
+              fontWeight={700}
+              fill={label.theme.ink}
+              opacity={muted ? 0.25 : 0.85}
+              className="pointer-events-none"
+              style={{ transition: 'opacity 0.4s ease' }}
+            >
+              {label.theme.label}
+            </text>
+          );
+        })}
       </g>
 
       {/* stars */}
@@ -258,6 +277,8 @@ export default function ConstellationMap({ items, width, height, onSelect, selec
           key={item.id}
           item={item}
           highlighted={selectedId === item.id || hoveredId === item.id}
+          muted={mutedThemes.has(item.theme)}
+          popping={poppingTheme === item.theme}
           onSelect={() => onSelect(item)}
           onHover={() => setHoveredId(item.id)}
           onLeave={() => setHoveredId((h) => (h === item.id ? null : h))}
