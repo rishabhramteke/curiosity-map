@@ -2,7 +2,6 @@ export type ThemeId =
   | 'ai'
   | 'music'
   | 'travel'
-  | 'pages'
   | 'making'
   | 'movement'
   | 'social';

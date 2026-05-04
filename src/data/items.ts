@@ -137,41 +137,15 @@ export const ITEMS: Curiosity[] = [
     status: 'idea',
   },
 
-  // ─── Pages ────────────────────────────────────────────────────────────
+  // ─── Making ───────────────────────────────────────────────────────────
   {
-    id: 'pag-novel',
+    id: 'mak-novel',
     title: 'Write a novel as Ariel Vikingson',
     description:
-      'Pen name keeps it playful. Outline first, draft second. Nordic ache, slow prose. No deadline yet — just start.',
-    theme: 'pages',
+      'Pen name keeps it playful. Probably literary fiction with a Nordic ache, slow prose. Also where my reading list lives — recommend me anything that\'d inspire it ✨',
+    theme: 'making',
     status: 'idea',
   },
-  {
-    id: 'pag-words',
-    title: '500 words a day',
-    description:
-      'Doesn\'t have to be the novel. Habit > output. Throwaway pages count.',
-    theme: 'pages',
-    status: 'idea',
-  },
-  {
-    id: 'pag-norse',
-    title: 'Soak in Nordic literature',
-    description:
-      'For Ariel\'s voice. Sigrid Undset, Knut Hamsun, the Eddas. Let the cadence seep in.',
-    theme: 'pages',
-    status: 'idea',
-  },
-  {
-    id: 'pag-list',
-    title: 'Build a reading list',
-    description:
-      'I don\'t know what to read next. Recommend me anything — fiction, philosophy, weird non-fiction, all welcome.',
-    theme: 'pages',
-    status: 'idea',
-  },
-
-  // ─── Making ───────────────────────────────────────────────────────────
   {
     id: 'mak-printer',
     title: 'Buy a 3D printer',
