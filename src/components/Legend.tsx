@@ -40,7 +40,7 @@ export default function Legend({ mutedThemes, onToggleTheme, totalsByStatus }: P
         })}
       </ul>
       <div className="mt-3 border-t border-white/10 pt-2 text-[10px] text-slate-400">
-        ✨ {totalsByStatus.idea} ideas · ⏳ {totalsByStatus.doing} doing · ✓ {totalsByStatus.done} done
+        📋 {totalsByStatus.todo} · ⏳ {totalsByStatus.doing} · 🔍 {totalsByStatus.review} · ✓ {totalsByStatus.done}
       </div>
       <p className="mt-2 text-[10px] text-slate-500">
         Tap a constellation to dim it. Drag a star to nudge it.

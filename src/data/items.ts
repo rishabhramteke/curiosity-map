@@ -10,7 +10,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Open MRI segmentation. fastMRI dataset, learn the physics of MR acquisition along the way — k-space, undersampling, all of it.',
     theme: 'ai',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'ai-mbti',
@@ -18,7 +18,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Treat personality as multimodal data. Embed responses, compare against HEXACO/Big-Five, see what falls out of the noise.',
     theme: 'ai',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'ai-perception',
@@ -26,7 +26,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Camera + lidar + sensor fusion. Train something small that grounds language in real driving / scene frames.',
     theme: 'ai',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'ai-vla',
@@ -34,7 +34,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Fine-tune something open like OpenVLA on a tiny task. See how brittle / un-brittle vision-language-action really is.',
     theme: 'ai',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'ai-poi',
@@ -42,7 +42,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Build a routing engine over real-world places. Spatial joins, time-of-day priors, demand signals. The kind of stack delivery apps run on.',
     theme: 'ai',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'ai-conf',
@@ -50,7 +50,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'NeurIPS / CVPR / ICRA / IROS. Pick one a year. Even better: submit a workshop paper, however small.',
     theme: 'ai',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'ai-paper',
@@ -58,7 +58,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Less reading, more writing. Workshop paper → main track → a sharp blog post that punches above its weight. One submission a year, even small.',
     theme: 'ai',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'ai-leetcode',
@@ -66,7 +66,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Steady, not crammed. A few problems a week. Goal isn\'t grind — it\'s not letting the muscle atrophy.',
     theme: 'ai',
-    status: 'idea',
+    status: 'todo',
   },
 
   // ─── Music ────────────────────────────────────────────────────────────
@@ -84,7 +84,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Untangle the mega-playlist into properly-themed ones. Then curate roadtrip mixes — South America, Camino, anywhere with hours of road ahead.',
     theme: 'music',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'mus-fair',
@@ -92,7 +92,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Crate-digging, talking to old vinyl heads. Probably the Utrecht one if I can swing it.',
     theme: 'music',
-    status: 'idea',
+    status: 'todo',
   },
 
   // ─── Travel ───────────────────────────────────────────────────────────
@@ -110,7 +110,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Slow, no fixed plan. Probably starts in Bogotá and ends... somewhere south. Months, not weeks.',
     theme: 'travel',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'trv-tromso',
@@ -118,7 +118,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Late Jan – early March. Two or three weeks. Northern lights as a daily commute.',
     theme: 'travel',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'trv-spanish',
@@ -126,7 +126,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Italki + Pimsleur combo. Goal: hold a real conversation before I land, not just order food.',
     theme: 'travel',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'trv-journal',
@@ -134,7 +134,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'A small notebook I hand to people I meet — let them write whatever. A paper trail of encounters instead of a camera roll of selfies.',
     theme: 'travel',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'trv-artifacts',
@@ -142,7 +142,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'One meaningful object per trip. A bowl, a textile, an instrument — something with a story attached, not a souvenir.',
     theme: 'travel',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'trv-interrail',
@@ -150,7 +150,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Slow Europe by rail. Bring a book, swap cities every few days, no overnight flights. Probably summer routes — Lisbon → Porto → San Sebastián, or a Balkans loop.',
     theme: 'travel',
-    status: 'idea',
+    status: 'todo',
   },
 
   // ─── Pages ────────────────────────────────────────────────────────────
@@ -160,7 +160,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Pen name keeps it playful. Outline first, draft second. Nordic ache, slow prose. No deadline yet — just start.',
     theme: 'pages',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'pag-list',
@@ -168,7 +168,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'I don\'t know what to read next. Recommend me anything — fiction, philosophy, weird non-fiction, all welcome.',
     theme: 'pages',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'pag-fairytales',
@@ -176,7 +176,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Local folk and fairy tales, picked up wherever I land. Original language is fine — illustrated counts. A shelf of other people\'s stories.',
     theme: 'pages',
-    status: 'idea',
+    status: 'todo',
   },
 
   // ─── Making ───────────────────────────────────────────────────────────
@@ -186,7 +186,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Bambu A1 mini is the obvious pick. Print only useful things for the first month before letting myself print Yodas.',
     theme: 'making',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'mak-blender',
@@ -194,7 +194,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Modeling > slicing. One small object a week. Donut tutorial first, then something useful for the house.',
     theme: 'making',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'mak-keyboard',
@@ -202,7 +202,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Different layout this time — maybe an Alice or 40%. Splurge on a properly wild keycap set, hand-wire if I have the patience.',
     theme: 'making',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'mak-house',
@@ -218,7 +218,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Cable holders, drawer dividers, weird brackets. Once the printer arrives, scratch every "I wish there was a thing for…" itch.',
     theme: 'making',
-    status: 'idea',
+    status: 'todo',
   },
 
   // ─── Wishlist ─────────────────────────────────────────────────────────
@@ -228,7 +228,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'NA or NB. Manual. Probably second-hand and not red. The little roadster keeps showing up in my head — no rush, find the right one.',
     theme: 'wishlist',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'wsh-espresso',
@@ -236,7 +236,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'For the new house. Step up from a Bambino — Lelit, Profitec, something I\'ll grow into. Stop renting espresso from cafés.',
     theme: 'wishlist',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'wsh-300mm',
@@ -244,7 +244,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Already have the 135mm. A 300 unlocks wildlife, distant mountains, candid street. Probably the Sony 70-350 G or the Tamron 70-300.',
     theme: 'wishlist',
-    status: 'idea',
+    status: 'todo',
   },
 
   // ─── Movement ─────────────────────────────────────────────────────────
@@ -270,7 +270,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Public sessions once a month, then maybe lessons. The goal is gliding, not speed.',
     theme: 'movement',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'mov-bollywood',
@@ -278,7 +278,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'One trial class. Zero expectations. Just see if the joy survives the awkwardness.',
     theme: 'movement',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'mov-salsa',
@@ -286,7 +286,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'A beginner social once. See if it sticks. Allowed to be terrible.',
     theme: 'movement',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'mov-kickbox',
@@ -294,7 +294,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Trial class somewhere local. Sweat ≠ drudgery. See if it scratches the rapier itch in a different shape.',
     theme: 'movement',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'mov-photo',
@@ -312,7 +312,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Default to yes. Even when tired. Especially when tired. Don\'t let the introvert default win every time.',
     theme: 'social',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'soc-strangers',
@@ -320,7 +320,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Coffee shop chat, gym hello, party intro. Keep it light. No agenda.',
     theme: 'social',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'soc-board',
@@ -328,7 +328,7 @@ export const ITEMS: Curiosity[] = [
     description:
       'Build the shelf. Heavy euros, light party games, and at least one weird thing. Excuse to host more nights.',
     theme: 'social',
-    status: 'idea',
+    status: 'todo',
   },
   {
     id: 'soc-dinner',
@@ -336,6 +336,6 @@ export const ITEMS: Curiosity[] = [
     description:
       'Everyone brings a dish. Easier than cooking a full meal, lower pressure all round. Semi-regular cadence, the new house gets lived in.',
     theme: 'social',
-    status: 'idea',
+    status: 'todo',
   },
 ];

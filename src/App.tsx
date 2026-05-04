@@ -3,18 +3,18 @@ import ConstellationMap from './components/ConstellationMap';
 import DetailPanel from './components/DetailPanel';
 import Legend from './components/Legend';
 import { ITEMS } from './data/items';
+import { loadOverrides, subscribeOverrides } from './services/status';
 import type { Curiosity, Status, ThemeId } from './types';
 
 const POP_DURATION_MS = 2000;
 
 export default function App() {
   const [size, setSize] = useState({ w: 1000, h: 640 });
-  const [selected, setSelected] = useState<Curiosity | null>(null);
-  // Themes that should appear muted. Empty set = everything is vivid.
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [mutedThemes, setMutedThemes] = useState<Set<ThemeId>>(() => new Set());
-  // The theme currently playing the "pop" animation, if any.
   const [poppingTheme, setPoppingTheme] = useState<ThemeId | null>(null);
   const popTimerRef = useRef<number | null>(null);
+  const [overrides, setOverrides] = useState(() => loadOverrides());
 
   useEffect(() => {
     const update = () => {
@@ -33,17 +33,38 @@ export default function App() {
     };
   }, []);
 
-  const totalsByStatus = useMemo<Record<Status, number>>(() => {
-    const acc: Record<Status, number> = { idea: 0, doing: 0, done: 0 };
-    for (const it of ITEMS) acc[it.status]++;
-    return acc;
+  // Listen for status overrides changing from any source (the panel button,
+  // another tab, manual localStorage edit).
+  useEffect(() => {
+    const refresh = () => setOverrides(loadOverrides());
+    return subscribeOverrides(refresh);
   }, []);
+
+  // Items decorated with the visitor's per-device status overrides.
+  const effectiveItems = useMemo<Curiosity[]>(
+    () =>
+      ITEMS.map((it) => ({
+        ...it,
+        status: overrides[it.id] ?? it.status,
+      })),
+    [overrides]
+  );
+
+  const totalsByStatus = useMemo<Record<Status, number>>(() => {
+    const acc: Record<Status, number> = { todo: 0, doing: 0, review: 0, done: 0 };
+    for (const it of effectiveItems) acc[it.status]++;
+    return acc;
+  }, [effectiveItems]);
+
+  const selected = useMemo(
+    () => (selectedId ? effectiveItems.find((it) => it.id === selectedId) ?? null : null),
+    [effectiveItems, selectedId]
+  );
 
   function toggleTheme(id: ThemeId) {
     setMutedThemes((prev) => {
       const next = new Set(prev);
       if (next.has(id)) {
-        // Was muted → becoming active. Trigger the pop.
         next.delete(id);
         if (popTimerRef.current) window.clearTimeout(popTimerRef.current);
         setPoppingTheme(id);
@@ -52,7 +73,6 @@ export default function App() {
           popTimerRef.current = null;
         }, POP_DURATION_MS);
       } else {
-        // Was active → becoming muted. Cancel any in-flight pop on this theme.
         next.add(id);
         setPoppingTheme((cur) => (cur === id ? null : cur));
       }
@@ -78,10 +98,10 @@ export default function App() {
       <main className="relative">
         <div className="absolute inset-x-0 top-0 z-0">
           <ConstellationMap
-            items={ITEMS}
+            items={effectiveItems}
             width={size.w}
             height={size.h}
-            onSelect={setSelected}
+            onSelect={(it) => setSelectedId(it.id)}
             selectedId={selected?.id ?? null}
             mutedThemes={mutedThemes}
             poppingTheme={poppingTheme}
@@ -101,7 +121,7 @@ export default function App() {
         </div>
       </main>
 
-      {selected && <DetailPanel item={selected} onClose={() => setSelected(null)} />}
+      {selected && <DetailPanel item={selected} onClose={() => setSelectedId(null)} />}
     </div>
   );
 }

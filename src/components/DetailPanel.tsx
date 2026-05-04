@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { THEME_BY_ID } from '../data/themes';
-import type { Curiosity } from '../types';
+import type { Curiosity, Status } from '../types';
+import { STATUS_ORDER } from '../types';
 import type { Recommendation } from '../types/recommendation';
 import { listenForRecommendations } from '../services/recommendations';
+import { setOverride } from '../services/status';
 import RecommendationList from './RecommendationList';
 import RecommendationForm from './RecommendationForm';
 
@@ -11,10 +13,11 @@ interface Props {
   onClose: () => void;
 }
 
-const STATUS_LABEL: Record<string, string> = {
-  idea: '✨ Idea',
-  doing: '⏳ In progress',
-  done: '✓ Done',
+const STATUS_BUTTON_LABEL: Record<Status, string> = {
+  todo: 'TODO',
+  doing: 'Doing',
+  review: 'Review',
+  done: 'Done',
 };
 
 export default function DetailPanel({ item, onClose }: Props) {
@@ -26,6 +29,11 @@ export default function DetailPanel({ item, onClose }: Props) {
     const unsubscribe = listenForRecommendations(item.id, setRecs);
     return unsubscribe;
   }, [item.id]);
+
+  function handleStatusChange(next: Status) {
+    if (item.status === next) return;
+    setOverride(item.id, next);
+  }
 
   return (
     <aside
@@ -54,9 +62,50 @@ export default function DetailPanel({ item, onClose }: Props) {
           </button>
         </header>
 
-        <p className="text-sm font-semibold" style={{ color: palette.ink }}>
-          {STATUS_LABEL[item.status] ?? item.status}
-        </p>
+        {/* Status switcher */}
+        <div>
+          <div
+            role="radiogroup"
+            aria-label="Status"
+            className="grid grid-cols-4 gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1"
+          >
+            {STATUS_ORDER.map((s) => {
+              const active = item.status === s;
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  role="radio"
+                  aria-checked={active}
+                  onClick={() => handleStatusChange(s)}
+                  className="rounded-full px-2 py-1.5 text-[11px] font-semibold transition"
+                  style={
+                    active
+                      ? {
+                          backgroundColor: palette.glow,
+                          color: '#0b1028',
+                        }
+                      : {
+                          color: '#94a3b8',
+                          backgroundColor: 'transparent',
+                        }
+                  }
+                  onMouseEnter={(e) => {
+                    if (!active) e.currentTarget.style.color = '#e2e8f0';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!active) e.currentTarget.style.color = '#94a3b8';
+                  }}
+                >
+                  {STATUS_BUTTON_LABEL[s]}
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-1.5 text-[10px] text-slate-500">
+            Saved on this device only · edit <code className="rounded bg-white/5 px-1">items.ts</code> to publish.
+          </p>
+        </div>
 
         <p className="text-sm leading-relaxed text-slate-200">{item.description}</p>
 

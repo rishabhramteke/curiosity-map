@@ -22,8 +22,9 @@ export interface SimLink {
 }
 
 const STATUS_RADIUS: Record<string, number> = {
-  idea: 5,
+  todo: 5,
   doing: 7,
+  review: 8,
   done: 9,
 };
 
