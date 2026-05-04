@@ -31,22 +31,13 @@ export const THEMES: Theme[] = [
     blurb: 'trips, stays, slow days',
   },
   {
-    id: 'pages',
-    label: 'Pages',
-    star: '#fbcfe8',
-    glow: '#f472b6',
-    line: 'rgba(244,114,182,0.45)',
-    ink: '#fbcfe8',
-    blurb: 'reading and writing',
-  },
-  {
     id: 'making',
     label: 'Making',
     star: '#fdba74',
     glow: '#fb923c',
     line: 'rgba(251,146,60,0.45)',
     ink: '#fdba74',
-    blurb: 'hardware, tools, the house',
+    blurb: 'hardware, the house, a novel',
   },
   {
     id: 'movement',
