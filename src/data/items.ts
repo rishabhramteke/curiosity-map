@@ -190,9 +190,17 @@ export const ITEMS: Curiosity[] = [
   },
   {
     id: 'mak-blender',
-    title: 'Learn Blender for printing',
+    title: 'Use Blender more',
     description:
-      'Modeling > slicing. One small object a week. Donut tutorial first, then something useful for the house.',
+      'Already know the tool — the gap is shipping. One small model a week. Personal stuff, props, things to print, occasional rabbit holes.',
+    theme: 'making',
+    status: 'todo',
+  },
+  {
+    id: 'mak-gallery',
+    title: 'Build a portfolio page for my 3D models',
+    description:
+      'A small gallery on the personal site — renders, turntables, maybe an interactive viewer. Forcing function: if it has to look good in public, I\'ll finish more.',
     theme: 'making',
     status: 'todo',
   },
