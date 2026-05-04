@@ -54,9 +54,9 @@ export const ITEMS: Curiosity[] = [
   },
   {
     id: 'ai-paper',
-    title: 'One ML paper a week',
+    title: 'Write papers',
     description:
-      'Pick something recent from arXiv. Write a one-paragraph summary. Don\'t pretend to read more than you actually do.',
+      'Less reading, more writing. Workshop paper → main track → a sharp blog post that punches above its weight. One submission a year, even small.',
     theme: 'ai',
     status: 'idea',
   },
@@ -141,6 +141,14 @@ export const ITEMS: Curiosity[] = [
     title: 'Collect artifacts, not fridge magnets',
     description:
       'One meaningful object per trip. A bowl, a textile, an instrument — something with a story attached, not a souvenir.',
+    theme: 'travel',
+    status: 'idea',
+  },
+  {
+    id: 'trv-interrail',
+    title: 'Plan interrail trips',
+    description:
+      'Slow Europe by rail. Bring a book, swap cities every few days, no overnight flights. Probably summer routes — Lisbon → Porto → San Sebastián, or a Balkans loop.',
     theme: 'travel',
     status: 'idea',
   },
@@ -316,17 +324,17 @@ export const ITEMS: Curiosity[] = [
   },
   {
     id: 'soc-board',
-    title: 'More board games — find a group',
+    title: 'Buy more board games',
     description:
-      'Recurring game night, or join an existing one. Heavy euros, light party games, both fine.',
+      'Build the shelf. Heavy euros, light party games, and at least one weird thing. Excuse to host more nights.',
     theme: 'social',
     status: 'idea',
   },
   {
     id: 'soc-dinner',
-    title: 'Host a dinner once a quarter',
+    title: 'Host potluck dinners at my place',
     description:
-      'Five people max. One recipe to perfect. Cook, don\'t cater.',
+      'Everyone brings a dish. Easier than cooking a full meal, lower pressure all round. Semi-regular cadence, the new house gets lived in.',
     theme: 'social',
     status: 'idea',
   },
