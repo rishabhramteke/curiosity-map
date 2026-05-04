@@ -34,39 +34,28 @@ Push to `main` → GitHub Actions rebuilds and deploys.
 
 ---
 
+## Recommendations (visitor suggestions)
+
+Click any star → the detail panel shows a list of recommendations from visitors plus a small form to leave one. **No backend, no Firebase, no infrastructure.**
+
+The whole feature is built on top of GitHub Issues:
+
+- **Submitting** → the form opens a prefilled `github.com/rishabhramteke/curiosity-map/issues/new` URL in a new tab. The visitor (who must have a GitHub account) clicks "Submit new issue" to publish. Their typed nickname is embedded in the issue body — their GitHub username is hidden in the panel UI.
+- **Reading** → the page fetches `GET /repos/rishabhramteke/curiosity-map/issues?labels=recommendation` from GitHub's public REST API. No auth needed. Re-fetches whenever the window regains focus, so a new suggestion appears the moment a visitor returns from github.com.
+- **Filtering** → the issue body contains a hidden marker like `<!-- curiosity:music-vinyl -->` so the panel matches issues to the right star.
+- **Moderating** → close the issue on github.com. Closed ones disappear from the site.
+- **Limit** → GitHub's unauthenticated API allows 60 reads/hour per IP. One panel open = one read; basically unhittable for a personal site.
+
+If you want to remove the feature entirely, delete `src/services/recommendations.ts` and the related components — there's nothing else to clean up.
+
+---
+
 ## Stack
 
 - **React 18 + Vite + TypeScript** — fast dev, static build
 - **TailwindCSS** — utility classes for the chrome (legend / detail panel / header)
 - **d3-force** — physics simulation that handles the clustering and the constellation links
-- **Firebase Firestore** — public recommendations (read + create only, ~150KB added to bundle)
-- **No router** — single page
-
----
-
-## Recommendations
-
-Click any star → the detail panel shows a list of recommendations from visitors plus a small form to leave one.
-
-- Body is required (1–500 chars), name is optional (shows "Anonymous" when blank).
-- Backed by Firestore when `VITE_FIREBASE_*` env vars are set; falls back to `localStorage` (single-device) when they're not, so the feature works without a backend.
-- Real-time: when Firebase is configured, new recommendations appear in any open panel via `onSnapshot`.
-
-### Wire up Firestore (optional but needed for multi-user)
-
-1. Create (or reuse) a Firebase project at https://console.firebase.google.com.
-2. Enable Cloud Firestore in production mode.
-3. Project settings → Your apps → Web → register `curiosity-map-web` and copy the config values into `.env` (or as repo secrets named `VITE_FIREBASE_*` for the GitHub Actions build).
-4. Deploy the rules and the composite index:
-   ```bash
-   npm i -g firebase-tools
-   firebase login
-   firebase use --add        # select the project
-   firebase deploy --only firestore:rules,firestore:indexes
-   ```
-5. Push any commit to `main` so GitHub Actions rebuilds with the secrets baked in. Done — recommendations are now multi-user.
-
-> Reusing the gatemate Firebase project is fine; the `recommendations` collection name doesn't conflict with anything.
+- **No router, no backend, no auth** — single page
 
 ---
 

@@ -1,49 +1,44 @@
 import { FormEvent, useState } from 'react';
-import { addRecommendation } from '../services/recommendations';
+import { buildIssueUrl } from '../services/recommendations';
 import type { Theme } from '../types';
 
 interface Props {
   curiosityId: string;
+  curiosityTitle: string;
   palette: Theme;
 }
 
 const MAX_BODY = 500;
 const MAX_NAME = 40;
 
-export default function RecommendationForm({ curiosityId, palette }: Props) {
+export default function RecommendationForm({ curiosityId, curiosityTitle, palette }: Props) {
   const [name, setName] = useState('');
   const [body, setBody] = useState('');
-  const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [justSent, setJustSent] = useState(false);
+  const [opened, setOpened] = useState(false);
 
-  async function handleSubmit(event: FormEvent) {
+  function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setError(null);
     if (!body.trim()) {
       setError('Type a suggestion first.');
       return;
     }
-    setBusy(true);
-    try {
-      await addRecommendation({
+    const url = buildIssueUrl(
+      {
         curiosityId,
         body: body.trim(),
         authorName: name.trim() || undefined,
-      });
-      setBody('');
-      setName('');
-      setJustSent(true);
-      window.setTimeout(() => setJustSent(false), 2200);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not send. Try again.');
-    } finally {
-      setBusy(false);
-    }
+      },
+      curiosityTitle
+    );
+    window.open(url, '_blank', 'noopener,noreferrer');
+    setOpened(true);
+    window.setTimeout(() => setOpened(false), 6000);
   }
 
   const remaining = MAX_BODY - body.length;
-  const canSubmit = body.trim().length > 0 && !busy;
+  const canSubmit = body.trim().length > 0;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-2">
@@ -69,8 +64,10 @@ export default function RecommendationForm({ curiosityId, palette }: Props) {
         <span className="text-[10px] text-slate-500">
           {error ? (
             <span className="text-rose-400">{error}</span>
-          ) : justSent ? (
-            <span className="text-emerald-300">Sent ✨ thank you</span>
+          ) : opened ? (
+            <span className="text-emerald-300">
+              Tap "Submit new issue" on GitHub to publish ✨
+            </span>
           ) : (
             <>{remaining} characters left</>
           )}
@@ -81,9 +78,13 @@ export default function RecommendationForm({ curiosityId, palette }: Props) {
           className="inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold text-slate-900 transition disabled:cursor-not-allowed disabled:opacity-50"
           style={{ backgroundColor: palette.glow }}
         >
-          {busy ? 'Sending…' : 'Recommend'}
+          Open in GitHub ↗
         </button>
       </div>
+      <p className="text-[10px] leading-relaxed text-slate-500">
+        Opens a prefilled GitHub issue in a new tab. Your typed nickname is preserved — your GitHub
+        username won't be displayed here.
+      </p>
     </form>
   );
 }
