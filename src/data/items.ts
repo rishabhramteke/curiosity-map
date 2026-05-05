@@ -64,9 +64,10 @@ export const ITEMS: Curiosity[] = [
     id: 'ai-leetcode',
     title: 'Stay sharp on coding (LeetCode habit)',
     description:
-      'Steady, not crammed. A few problems a week. Goal isn\'t grind — it\'s not letting the muscle atrophy.',
+      'Steady, not crammed. A few problems a week. Goal isn\'t grind — it\'s not letting the muscle atrophy. I keep a 100-page personal study guide (top patterns + Uber-style problems) — link below.',
     theme: 'ai',
     status: 'todo',
+    link: '/curiosity-map/uber_leetcode.pdf',
   },
 
   // ─── Music ────────────────────────────────────────────────────────────
