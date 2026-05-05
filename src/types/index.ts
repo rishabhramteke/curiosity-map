@@ -31,6 +31,8 @@ export interface Theme {
   line: string;       // constellation line color
   ink: string;        // label text color (light, on dark bg)
   blurb: string;      // tiny description for the legend
+  zodiac: string;     // unicode zodiac glyph drawn behind the cluster
+  zodiacName: string; // accessible name for the glyph
 }
 
 // Position assigned by the d3-force simulation (mutated each tick).

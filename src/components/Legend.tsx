@@ -31,7 +31,14 @@ export default function Legend({ mutedThemes, onToggleTheme, totalsByStatus }: P
                   className="font-semibold transition-colors duration-300"
                   style={{ color: active ? t.ink : '#64748b' }}
                 >
-                  {t.label}
+                  {t.label}{' '}
+                  <span
+                    aria-label={t.zodiacName}
+                    title={t.zodiacName}
+                    className="opacity-60"
+                  >
+                    {t.zodiac}
+                  </span>
                 </span>
                 <span className="ml-auto text-[10px] text-slate-500">{t.blurb}</span>
               </button>
