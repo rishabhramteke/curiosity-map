@@ -11,6 +11,8 @@ export const THEMES: Theme[] = [
     line: 'rgba(165,180,252,0.45)',
     ink: '#c7d2fe',
     blurb: 'models, papers, datasets',
+    zodiac: '♒',
+    zodiacName: 'Aquarius',
   },
   {
     id: 'music',
@@ -20,6 +22,8 @@ export const THEMES: Theme[] = [
     line: 'rgba(252,211,77,0.5)',
     ink: '#fde68a',
     blurb: 'vinyl, listening, gigs',
+    zodiac: '♎',
+    zodiacName: 'Libra',
   },
   {
     id: 'travel',
@@ -29,6 +33,8 @@ export const THEMES: Theme[] = [
     line: 'rgba(110,231,183,0.45)',
     ink: '#a7f3d0',
     blurb: 'trips, stays, slow days',
+    zodiac: '♐',
+    zodiacName: 'Sagittarius',
   },
   {
     id: 'pages',
@@ -38,6 +44,8 @@ export const THEMES: Theme[] = [
     line: 'rgba(244,114,182,0.45)',
     ink: '#fbcfe8',
     blurb: 'reading and writing',
+    zodiac: '♓',
+    zodiacName: 'Pisces',
   },
   {
     id: 'making',
@@ -47,6 +55,8 @@ export const THEMES: Theme[] = [
     line: 'rgba(251,146,60,0.45)',
     ink: '#fdba74',
     blurb: 'hardware, tools, the house',
+    zodiac: '♑',
+    zodiacName: 'Capricorn',
   },
   {
     id: 'wishlist',
@@ -56,6 +66,8 @@ export const THEMES: Theme[] = [
     line: 'rgba(167,139,250,0.45)',
     ink: '#ddd6fe',
     blurb: 'things to own someday',
+    zodiac: '♉',
+    zodiacName: 'Taurus',
   },
   {
     id: 'movement',
@@ -65,6 +77,8 @@ export const THEMES: Theme[] = [
     line: 'rgba(132,204,22,0.5)',
     ink: '#bef264',
     blurb: 'sport, dance, fight, glide',
+    zodiac: '♈',
+    zodiacName: 'Aries',
   },
   {
     id: 'social',
@@ -74,6 +88,8 @@ export const THEMES: Theme[] = [
     line: 'rgba(56,189,248,0.5)',
     ink: '#7dd3fc',
     blurb: 'people, games, hosting',
+    zodiac: '♊',
+    zodiacName: 'Gemini',
   },
 ];
 

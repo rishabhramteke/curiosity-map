@@ -65,6 +65,13 @@ export default function ConstellationMap({
   positionsRef.current = positions;
   const simRef = useRef<Simulation<PositionedCuriosity, undefined> | null>(null);
 
+  // Anchor positions for the zodiac glyphs — fixed per canvas size, so the
+  // background symbols don't jitter as the force simulation settles.
+  const zodiacAnchors = useMemo(
+    () => clusterCenters(THEMES.map((t) => t.id), width, height),
+    [width, height]
+  );
+
   // Background twinkle dots — generated once.
   const bgStars = useMemo<BackgroundStar[]>(() => {
     const out: BackgroundStar[] = [];
@@ -221,6 +228,32 @@ export default function ConstellationMap({
             />
           </circle>
         ))}
+      </g>
+
+      {/* zodiac glyphs sitting behind each cluster, faded */}
+      <g>
+        {zodiacAnchors.map((anchor) => {
+          const theme = THEME_BY_ID[anchor.theme];
+          const muted = mutedThemes.has(anchor.theme);
+          return (
+            <text
+              key={`zodiac-${anchor.theme}`}
+              x={anchor.x}
+              y={anchor.y}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fontFamily="Apple Symbols, Segoe UI Symbol, DejaVu Sans, system-ui, sans-serif"
+              fontSize={96}
+              fill={theme.ink}
+              opacity={muted ? 0.05 : 0.14}
+              aria-hidden="true"
+              className="pointer-events-none"
+              style={{ transition: 'opacity 0.4s ease' }}
+            >
+              {theme.zodiac}
+            </text>
+          );
+        })}
       </g>
 
       {/* constellation lines */}
