@@ -70,34 +70,10 @@ export const ITEMS: Curiosity[] = [
     link: '/curiosity-map/uber_leetcode.pdf',
   },
   {
-    id: 'ai-opensource',
-    title: 'Open-source a tool people actually use',
+    id: 'ai-stupidapp',
+    title: 'Build a stupid app just for friends',
     description:
-      'Ship something small but real — a CLI, a tiny library, a debugging helper. Stars are a lagging indicator; usefulness comes first.',
-    theme: 'ai',
-    status: 'todo',
-  },
-  {
-    id: 'ai-paper-reproduce',
-    title: 'Reproduce a famous paper from scratch',
-    description:
-      'Pick a 2017–2020 classic. Re-implement, re-train, write up where the paper handwaved. No shortcut beats it for actual understanding.',
-    theme: 'ai',
-    status: 'todo',
-  },
-  {
-    id: 'ai-kaggle',
-    title: 'Place top 10% in a Kaggle competition',
-    description:
-      'Once. Doesn\'t matter which. The discipline of grinding a leaderboard teaches things courses don\'t — feature engineering, ensembling, knowing when to stop.',
-    theme: 'ai',
-    status: 'todo',
-  },
-  {
-    id: 'ai-classics',
-    title: 'Read a CS classic end-to-end',
-    description:
-      'SICP, CLRS, or AIMA. Slow read, 30 minutes a day. The canonical books that show up at every senior interview and shape how you think.',
+      'No business model, no roadmap. A potluck-tracker, a cocktail-name generator from our group chat, something that makes five people laugh. Pure laughter ROI.',
     theme: 'ai',
     status: 'todo',
   },
@@ -124,30 +100,6 @@ export const ITEMS: Curiosity[] = [
     title: 'Visit a record fair',
     description:
       'Crate-digging, talking to old vinyl heads. Probably the Utrecht one if I can swing it.',
-    theme: 'music',
-    status: 'todo',
-  },
-  {
-    id: 'mus-instrument',
-    title: 'Pick up a weird instrument',
-    description:
-      'Not piano or guitar — something with character. Theremin, harmonica, melodica, hang drum. Goal: one song people can recognise.',
-    theme: 'music',
-    status: 'todo',
-  },
-  {
-    id: 'mus-festival',
-    title: 'A music festival in a new country every year',
-    description:
-      'Primavera, Roskilde, Fuji Rock, Glastonbury. Plan the festival, build the trip around it, leave room for the city after.',
-    theme: 'music',
-    status: 'todo',
-  },
-  {
-    id: 'mus-djset',
-    title: 'Spin a DJ set, even for three friends',
-    description:
-      'House party counts. Bedroom-stream counts. Just commit once and play 60 minutes I curated, top to bottom.',
     theme: 'music',
     status: 'todo',
   },
@@ -213,7 +165,7 @@ export const ITEMS: Curiosity[] = [
     id: 'trv-allcontinents',
     title: 'Step on all 7 continents',
     description:
-      'Antarctica is the final boss. Each continent gets its own slow trip — none rushed for the checkmark. Long-game over a decade.',
+      'Antarctica is the final boss. No schedule, no rush — each one whenever the wind blows that way.',
     theme: 'travel',
     status: 'todo',
   },
@@ -221,39 +173,23 @@ export const ITEMS: Curiosity[] = [
     id: 'trv-cargo',
     title: 'Take a cargo ship across an ocean',
     description:
-      'Two weeks at sea, no wifi, books and the wake. Cuxhaven → Halifax is the classic route. Slow travel as ascetic practice.',
+      'Two weeks at sea, no wifi, just books and the wake. Nobody does this anymore — that\'s exactly the point.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'trv-monastery',
-    title: 'A week at a remote monastery',
+    id: 'trv-spicy',
+    title: 'Eat the spiciest local dish in every country I visit',
     description:
-      'Buddhist or Christian, doesn\'t matter. Silent. No phone. Just sit, walk, eat, sleep — see what surfaces when nothing else demands attention.',
+      'Sweat it out, cry into the napkin, take notes. Sichuan first, Korea second. The hotter the better — collect the receipts.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'trv-cycle',
-    title: 'Cycle across a small country',
+    id: 'trv-noplan',
+    title: 'Travel for two weeks with no plan',
     description:
-      'Netherlands border-to-border first (~3 days). Then Slovenia, then maybe more ambitious. Bike, panniers, no support van.',
-    theme: 'travel',
-    status: 'todo',
-  },
-  {
-    id: 'trv-cherry',
-    title: 'Japan during cherry blossom season',
-    description:
-      'Late March / early April. Kyoto → Tokyo, slowly. Bring the journal. Eat the konbini sandwiches without irony.',
-    theme: 'travel',
-    status: 'todo',
-  },
-  {
-    id: 'trv-trainsib',
-    title: 'Trans-Siberian — even just one leg',
-    description:
-      'Moscow → Irkutsk is 4 days. Lake Baikal as the reward. A train compartment full of strangers and instant noodles.',
+      'Buy the ticket the morning of. Wherever it lands, that\'s where I go. Pack a bag, leave a note, see what happens.',
     theme: 'travel',
     status: 'todo',
   },
@@ -280,30 +216,6 @@ export const ITEMS: Curiosity[] = [
     title: 'Collect a fairy-tale book from every country I visit',
     description:
       'Local folk and fairy tales, picked up wherever I land. Original language is fine — illustrated counts. A shelf of other people\'s stories.',
-    theme: 'pages',
-    status: 'todo',
-  },
-  {
-    id: 'pag-foreignlang',
-    title: 'Read a novel in a non-native language',
-    description:
-      'Start with something accessible — Spanish since I\'m brushing it up. A short-story collection counts as the first rep.',
-    theme: 'pages',
-    status: 'todo',
-  },
-  {
-    id: 'pag-hugos',
-    title: 'Read every Hugo Award–winning novel',
-    description:
-      'Long-term, ~70 books. One a month. Charts the whole shape of post-war science fiction — a literary archaeology.',
-    theme: 'pages',
-    status: 'todo',
-  },
-  {
-    id: 'pag-litmag',
-    title: 'Submit a short story to a literary magazine',
-    description:
-      'Under the pen name. Granta or n+1 are the dream; smaller mags are the realistic first step. Submit — rejection is part of the rep.',
     theme: 'pages',
     status: 'todo',
   },
@@ -358,42 +270,18 @@ export const ITEMS: Curiosity[] = [
     status: 'todo',
   },
   {
-    id: 'mak-furniture',
-    title: 'Build a piece of furniture from scratch',
+    id: 'mak-treehouse',
+    title: 'Build a treehouse (or platform) with friends',
     description:
-      'Start with a bookshelf. Hand tools where possible. Mistakes are part of the wood — leave them, they prove I made it.',
+      'Doesn\'t have to be Pinterest-grade. A platform, a ladder, a small bench. Bring beers, bring power tools, see what we end up with by Sunday.',
     theme: 'making',
     status: 'todo',
   },
   {
-    id: 'mak-sourdough',
-    title: 'Bake sourdough every week for a year',
+    id: 'mak-tattoo',
+    title: 'Get a tattoo with a real story',
     description:
-      'Build a starter, name it, keep it alive. Loaves to give away, loaves to test, eventually one I\'d serve guests without apologising.',
-    theme: 'making',
-    status: 'todo',
-  },
-  {
-    id: 'mak-cocktails',
-    title: 'Master twelve classic cocktails',
-    description:
-      'Old Fashioned, Negroni, Martini, Manhattan, Daiquiri, Margarita, Sazerac, Boulevardier, Aviation, Last Word, Vesper, Paloma. Bar-grade, not "good enough".',
-    theme: 'making',
-    status: 'todo',
-  },
-  {
-    id: 'mak-restore',
-    title: 'Restore an old object',
-    description:
-      'A film camera, a vintage radio, a broken watch. Repair as ritual — slow disassembly, parts laid out, learning what made it work.',
-    theme: 'making',
-    status: 'todo',
-  },
-  {
-    id: 'mak-bookbind',
-    title: 'Hand-bind a book',
-    description:
-      'Once the novel exists in draft, bind a single physical copy by hand. Coptic stitch, probably. The first reader gets the first edition.',
+      'Not a flash piece, not aesthetic — something where, when someone asks, the story takes ten minutes to tell.',
     theme: 'making',
     status: 'todo',
   },
@@ -420,22 +308,6 @@ export const ITEMS: Curiosity[] = [
     title: '300mm lens for the Sony a6400',
     description:
       'Already have the 135mm. A 300 unlocks wildlife, distant mountains, candid street. Probably the Sony 70-350 G or the Tamron 70-300.',
-    theme: 'wishlist',
-    status: 'todo',
-  },
-  {
-    id: 'wsh-watch',
-    title: 'A vintage mechanical watch',
-    description:
-      'Seiko 5 to start; eventually something I\'ll wear daily for the next 30 years. Mechanical, not quartz — let it tick.',
-    theme: 'wishlist',
-    status: 'todo',
-  },
-  {
-    id: 'wsh-filmcam',
-    title: 'A film camera worth using',
-    description:
-      'Pentax K1000 or a Leica M-style if I get serious. Develop my own black-and-white. Slowness as the whole point.',
     theme: 'wishlist',
     status: 'todo',
   },
@@ -498,34 +370,26 @@ export const ITEMS: Curiosity[] = [
     status: 'doing',
   },
   {
-    id: 'mov-marathon',
-    title: 'Run a marathon',
-    description:
-      'Once. Sub-4 if I can. Pick a city I want to spend a weekend in — Berlin, Lisbon, Reykjavík. Train properly, finish properly.',
-    theme: 'movement',
-    status: 'todo',
-  },
-  {
     id: 'mov-mountain',
     title: 'Climb a real mountain',
     description:
-      'Kilimanjaro or Mont Blanc — proper acclimatisation, proper guide, proper humility. Summit photo not required; finishing matters.',
+      'Kili, Toubkal, Mont Blanc — doesn\'t have to be a 7-summiter. Just one thing where the air gets thin and the photo doesn\'t do it justice.',
     theme: 'movement',
     status: 'todo',
   },
   {
     id: 'mov-surf',
-    title: 'Learn to surf properly',
+    title: 'Learn to surf',
     description:
-      'A week-long surf camp — Portugal, Sri Lanka, Costa Rica. Goal: catch unbroken waves and stand up consistently.',
+      'Drop in. Wipe out. Drop in again. A week somewhere warm — Portugal, Sri Lanka, Costa Rica — until I can stand up and ride.',
     theme: 'movement',
     status: 'todo',
   },
   {
     id: 'mov-dive',
-    title: 'Get PADI open-water certified',
+    title: 'Dive somewhere wild',
     description:
-      'Cert first, then dive somewhere wild — Egypt, Indonesia, the Galápagos. Be the kind of person who keeps a divelog.',
+      'The Red Sea, Indonesia, Galápagos. Get the cert if I have to, but the dive is the point — neon fish, deep blue, my own breathing in my ears.',
     theme: 'movement',
     status: 'todo',
   },
@@ -533,15 +397,39 @@ export const ITEMS: Curiosity[] = [
     id: 'mov-skydive',
     title: 'Skydive once',
     description:
-      'One tandem jump. Fear is the whole point — the photo evidence is the prize.',
+      'One tandem jump. Yell something stupid on the way down. Photo evidence is the souvenir.',
     theme: 'movement',
     status: 'todo',
   },
   {
-    id: 'mov-archery',
-    title: 'Try archery',
+    id: 'mov-tournament',
+    title: 'Enter a tournament for anything and lose hilariously',
     description:
-      'Traditional recurve. A trial class, then maybe a club. Quiet, focused, totally different shape from rapier.',
+      'Pub quiz, eating contest, chess club open, karaoke battle. Show up, give everything, get destroyed, buy the winner a beer.',
+    theme: 'movement',
+    status: 'todo',
+  },
+  {
+    id: 'mov-spar',
+    title: 'Spar a stranger at a dojo',
+    description:
+      'Judo, BJJ, boxing — whichever has an open mat. Get thrown, get back up, laugh about it. Bow at the end.',
+    theme: 'movement',
+    status: 'todo',
+  },
+  {
+    id: 'mov-stupidskill',
+    title: 'Pick up a stupid useless skill',
+    description:
+      'Butterfly knife flipping. Two-finger whistle. Rope spinning. Spinning a basketball on one finger. Nothing employable — pure showmanship.',
+    theme: 'movement',
+    status: 'todo',
+  },
+  {
+    id: 'mov-tree',
+    title: 'Climb a tree like I\'m 12 again',
+    description:
+      'Find a big one. Get high enough that I\'m slightly nervous. Sit there for a while. Come down before sundown.',
     theme: 'movement',
     status: 'todo',
   },
@@ -580,34 +468,26 @@ export const ITEMS: Curiosity[] = [
     status: 'todo',
   },
   {
-    id: 'soc-bookclub',
-    title: 'Start (or join) a real book club',
+    id: 'soc-karaoke',
+    title: 'Karaoke until 3am with strangers',
     description:
-      'Six people, monthly, one ambitious book. The kind that argues. Hosted on rotation so no one\'s the permanent host.',
+      'A bar, a song I love, a room that joins in by the chorus. Bonus points if I make a friend by the encore.',
     theme: 'social',
     status: 'todo',
   },
   {
-    id: 'soc-language',
-    title: 'Conversational in two new languages',
+    id: 'soc-openmic',
+    title: 'Get on stage at an open mic',
     description:
-      'Spanish for South America (already on it). Then a stretch — Japanese? Italian? German polished beyond tourist?',
-    theme: 'social',
-    status: 'todo',
-  },
-  {
-    id: 'soc-mentor',
-    title: 'Mentor someone — tech, writing, anything',
-    description:
-      'One regular weekly call with someone earlier on the path I\'m on. Pay forward what people gave me.',
+      'Stand-up, music, poetry — anything. Bomb on purpose if I have to. Fear of doing it is the only thing in the way.',
     theme: 'social',
     status: 'todo',
   },
   {
     id: 'soc-costume',
-    title: 'Throw an annual costume party',
+    title: 'Throw a no-warning costume party',
     description:
-      'A theme each year. Effort required to enter. Photos as the through-line — five years of receipts that I lived deliberately.',
+      'Tell the guests it\'s casual. Hand them a costume at the door. They\'re in too deep to leave. Photos as evidence.',
     theme: 'social',
     status: 'todo',
   },
