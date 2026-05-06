@@ -194,6 +194,110 @@ export const ITEMS: Curiosity[] = [
     status: 'todo',
   },
 
+  // ─── Travel · Valencia ───────────────────────
+  {
+    id: 'val-fallas',
+    title: 'Stand inside Las Fallas — Valencia',
+    description:
+      'Mid-March chaos. Enormous wooden ninots burning in the streets, mascletàs at 2pm in the plaza, the whole city outside for a week. The kind of festival you don\'t watch — you stand inside it.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'val-paella',
+    title: 'Eat paella where it was actually invented',
+    description:
+      'Not in Madrid, not in Barcelona — Sunday lunch at one of the old paellas in L\'Albufera, just outside Valencia. Rabbit and snail. No chorizo. Argue about it after.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'val-horchata',
+    title: 'Horchata + fartons at a proper horchatería',
+    description:
+      'Daniel or Santa Catalina. Cold tigernut horchata, sugar-glazed fartons for dipping. Forty-five minutes, phone in pocket.',
+    theme: 'travel',
+    status: 'todo',
+  },
+
+  // ─── Travel · Barcelona ──────────────────────
+  {
+    id: 'bcn-bunkers',
+    title: 'Sunrise breakfast at Bunkers del Carmel',
+    description:
+      'Walk up before dawn with a thermos of coffee and a bocadillo. The city wakes up under my feet. Get there sleepy, leave wide awake.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'bcn-calcotada',
+    title: 'A proper calçotada in season',
+    description:
+      'Jan–March. Bib on, gloves optional. Char a hundred spring onions over the grill, dip in romesco, eat with my hands. Then meat. Then crema catalana. Then nap.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'bcn-midnight-swim',
+    title: 'Midnight swim at Barceloneta',
+    description:
+      'After dinner, clothes folded on the sand, into the sea. Empty beach, warm August water, the city humming behind me. Don\'t bring anyone I wouldn\'t be honest with.',
+    theme: 'travel',
+    status: 'todo',
+  },
+
+  // ─── Travel · Madrid ─────────────────────────
+  {
+    id: 'mad-tortilla',
+    title: 'Argue over the best tortilla de patatas in Madrid',
+    description:
+      'Pick five spots — Casa Dani, Sylkar, Las Bravas, whatever. Eat one a week. Have an opinion (poco hecha vs. cuajada, with onion vs. without). Defend it loudly.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'mad-cocido',
+    title: 'Cocido madrileño on a cold day',
+    description:
+      'Lhardy or Casa Carola. Three vuelcos — broth first, chickpeas second, meats third. Two-hour lunch. Mandatory siesta after.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'mad-rooftop',
+    title: 'Sunset from Círculo de Bellas Artes',
+    description:
+      'Pay the few euros, take the elevator. The city stretching out, the Sierra in the distance, drink in hand. Stay until the lights come on across the rooftops.',
+    theme: 'travel',
+    status: 'todo',
+  },
+
+  // ─── Travel · Camino ─────────────────────────
+  {
+    id: 'cam-iratxe',
+    title: 'Drink from the wine fountain at Irache',
+    description:
+      '~5 km out of Estella. Free red wine for pilgrims since 1991. The sign reads: "Drink with moderation. We want to see you arrive at Santiago full of energy." Don\'t take all of it.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'cam-pulpo',
+    title: 'Pulpo a feira at Pulpería Ezequiel — Melide',
+    description:
+      'Octopus, paprika, olive oil, rough salt, on a wooden plate. Eat standing if it\'s busy. Pair with a Ribeiro in a small ceramic cup. Worth detouring half a stage.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'cam-finisterre',
+    title: 'Walk to Finisterre after Santiago',
+    description:
+      '~90 km extra. The traditional ending — to the "end of the world," watch the sun drop into the Atlantic, burn an old shirt on the rocks (the pilgrim ritual). The Camino doesn\'t end at the cathedral; it ends at the sea.',
+    theme: 'travel',
+    status: 'todo',
+  },
+
   // ─── Pages ────────────────────────────────────────────────────────────
   {
     id: 'pag-novel',
