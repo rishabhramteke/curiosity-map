@@ -241,9 +241,10 @@ export const ITEMS: Curiosity[] = [
     id: 'shi-section',
     title: 'Walk a section of the Shikoku 88-temple pilgrimage',
     description:
-      'In the white hakui and conical sugegasa hat, walking stick in hand. Even one of the four prefectures is enough. Get the nōkyōchō stamp book — every temple\'s seal.',
+      'In the white hakui and conical sugegasa hat, walking stick in hand. Even one of the four prefectures is enough. Get the nōkyōchō stamp book — every temple\'s seal. Detailed pilgrim notes linked below.',
     theme: 'travel',
     status: 'todo',
+    link: '/curiosity-map/shikoku88.html',
   },
   {
     id: 'shi-temple-stay',
