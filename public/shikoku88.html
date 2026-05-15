@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1028" />
+  <title>Shikoku 88 — Pilgrim's notes</title>
+  <link rel="icon" type="image/svg+xml" href="/curiosity-map/star.svg?v=3" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: #e2e8f0;
+      background:
+        radial-gradient(ellipse at 30% 20%, #1c2454 0%, #0b1028 55%, #060919 100%);
+      background-attachment: fixed;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 48px 24px 96px; }
+    h1, h2, h3, h4 { font-family: 'Quicksand', 'Inter', ui-sans-serif, system-ui, sans-serif; letter-spacing: -0.01em; color: #ffffff; }
+    h1 { font-size: 2.4rem; margin: 0 0 0.4rem; }
+    h2 { font-size: 1.5rem; margin: 2.4rem 0 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; margin: 1.6rem 0 0.4rem; color: #fdba74; }
+    h4 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: #c7d2fe; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+    p { margin: 0.5rem 0; color: #cbd5e1; }
+    em { color: #a5b4fc; font-style: normal; font-weight: 500; }
+    strong { color: #ffffff; }
+    a { color: #fdba74; text-decoration: none; border-bottom: 1px dotted rgba(253,186,116,0.5); }
+    a:hover { color: #fed7aa; border-bottom-color: #fed7aa; }
+    .lede {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin-top: 0.5rem;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 9999px;
+      background: rgba(253,186,116,0.12);
+      color: #fdba74;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .kicker {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fdba74;
+      font-weight: 600;
+    }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 12px 0;
+    }
+    .grid { display: grid; gap: 12px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 720px) { .grid-4 { grid-template-columns: 1fr 1fr; } }
+    .pref { padding: 14px 16px; }
+    .pref .name { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 1.05rem; color: #ffffff; }
+    .pref .theme { font-size: 0.75rem; color: #a5b4fc; margin-top: 2px; }
+    .pref .stats { margin-top: 8px; font-size: 0.8rem; color: #94a3b8; line-height: 1.5; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.92rem;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: #a5b4fc; font-weight: 600; }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+    .rest { color: #bef264; font-weight: 600; }
+    .warn { color: #f87171; font-weight: 600; }
+    code, .mono {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.85em;
+      background: rgba(255,255,255,0.05);
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #fdba74;
+    }
+    ul, ol { color: #cbd5e1; padding-left: 22px; margin: 0.4rem 0; }
+    ul li, ol li { margin: 4px 0; }
+    .footnote {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #64748b;
+      font-size: 0.82rem;
+    }
+    .back { margin-bottom: 16px; }
+    .back a { font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="back"><a href="/curiosity-map/">← back to the curiosity map</a></div>
+
+    <p class="kicker">Side quest · お遍路</p>
+    <h1>Shikoku 88 — pilgrim's notes</h1>
+    <p class="lede">
+      The 1,200 km Buddhist pilgrimage circumnavigating Shikoku island, visiting all 88
+      temples associated with Kūkai (Kōbō Daishi). What I need to know to plan it
+      properly, walking 20–30 km a day.
+    </p>
+
+    <div class="card" style="margin-top: 20px;">
+      <strong>At a glance:</strong> ~1,200 km · 88 temples · 4 prefectures ·
+      <strong>~48–55 walking days</strong> at 25 km/day average + ~6–8 rest days ≈
+      <strong>8 weeks total</strong>. Start at Temple 1 (Ryōzen-ji, Tokushima), finish
+      at Temple 88 (Ōkubo-ji, Kagawa). Traditional bonus: return to T1 and continue
+      to Mount Kōya (Wakayama) to "close" the loop.
+    </div>
+
+    <h2>The four prefectures (and what each one is for)</h2>
+    <p>
+      The pilgrimage is split into four spiritual stages, one per prefecture, traversed
+      clockwise:
+    </p>
+
+    <div class="grid grid-4">
+      <div class="card pref">
+        <div class="name">Tokushima · Awa</div>
+        <div class="theme">Spiritual Awakening · 発心</div>
+        <div class="stats">
+          T1 – T23<br>
+          ~210 km · 9 walking days
+        </div>
+      </div>
+      <div class="card pref">
+        <div class="name">Kōchi · Tosa</div>
+        <div class="theme">Ascetic Training · 修行</div>
+        <div class="stats">
+          T24 – T39<br>
+          ~390 km · 16 walking days<br>
+          <em>Longest, most lonely</em>
+        </div>
+      </div>
+      <div class="card pref">
+        <div class="name">Ehime · Iyo</div>
+        <div class="theme">Enlightenment · 菩提</div>
+        <div class="stats">
+          T40 – T65<br>
+          ~400 km · 16 walking days
+        </div>
+      </div>
+      <div class="card pref">
+        <div class="name">Kagawa · Sanuki</div>
+        <div class="theme">Nirvana · 涅槃</div>
+        <div class="stats">
+          T66 – T88<br>
+          ~180 km · 7 walking days
+        </div>
+      </div>
+    </div>
+
+    <h2>Suggested itinerary at 25 km/day with rest days</h2>
+    <p>
+      Below is a 55-day plan: 48 walking days + 7 rest days. Adjust the pace based on
+      how the legs feel — most people slow down in Kōchi (long empty coasts, few
+      towns) and pick up again in Kagawa.
+    </p>
+
+    <h3>Tokushima · 10 days (awakening)</h3>
+    <table>
+      <thead>
+        <tr><th>Day</th><th>From → To</th><th>Temples</th><th>km</th><th>Stay</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Ryōzen-ji → Kirihata-ji</td><td>T1–T10</td><td>~25</td><td>Kamiya / Awa-Yamakawa minshuku</td></tr>
+        <tr><td>2</td><td>Kirihata-ji → Fujii-dera</td><td>T10–T11</td><td>~10</td><td>Awa-Kawashima business hotel</td></tr>
+        <tr><td>3 <span class="warn">⚠</span></td><td>Fujii-dera → Shōsan-ji (henrokorogashi)</td><td>T11→T12</td><td>~13 (huge climb)</td><td>Sudachi-kan or temple shukubō at T12</td></tr>
+        <tr><td>4</td><td>Shōsan-ji → Anraku-ji</td><td>T13–T17</td><td>~28</td><td>Anraku-ji shukubō (recommended)</td></tr>
+        <tr><td>5</td><td>Anraku-ji → Tatsue-ji</td><td>T17–T19</td><td>~25</td><td>Komatsushima minshuku</td></tr>
+        <tr><td>6</td><td>Tatsue-ji → Kakurin-ji</td><td>T19–T20</td><td>~14 (climb)</td><td>Tairyū-ji rope-up area minshuku</td></tr>
+        <tr><td>7</td><td>Kakurin-ji → Byōdō-ji</td><td>T20–T22</td><td>~25</td><td>Byōdō-ji shukubō or Yuki onsen</td></tr>
+        <tr><td>8</td><td>Byōdō-ji → Yakuō-ji</td><td>T22–T23</td><td>~22</td><td>Hiwasa town (ryokan / business hotel)</td></tr>
+        <tr><td>9 <span class="rest">★ rest</span></td><td>Hiwasa</td><td>—</td><td>—</td><td>Hot bath, laundry, fix blisters before Kōchi</td></tr>
+        <tr><td>10</td><td>Yakuō-ji → onward</td><td>—</td><td>~25</td><td>Mugi or Shishikui ryokan</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Kōchi · 18 days (ascetic training)</h3>
+    <p>
+      The longest, emptiest stretch. <em>Temples here are far apart</em> — sometimes
+      80+ km between consecutive ones. Long coastal walks at Cape Muroto and Cape
+      Ashizuri are beautiful but lonely. Plan rest days in Kōchi City and Tosashimizu.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Day</th><th>Stage</th><th>Temples</th><th>km</th><th>Stay</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>11–13</td><td>Tokushima border → Cape Muroto</td><td>—</td><td>~75 over 3 days</td><td>Kannoura ryokan, Muroto town</td></tr>
+        <tr><td>14</td><td>Cape Muroto temples</td><td>T24–T26</td><td>~20 (tight cluster)</td><td>Muroto onsen</td></tr>
+        <tr><td>15–17</td><td>Muroto → Kōchi City</td><td>T27–T31</td><td>~85 over 3 days</td><td>Aki, Yasuda, then Kōchi City</td></tr>
+        <tr><td>18 <span class="rest">★ rest</span></td><td>Kōchi City</td><td>—</td><td>—</td><td>Sake breweries, Hirome ichiba market, sleep in a real bed</td></tr>
+        <tr><td>19–21</td><td>Kōchi → Susaki → Kubokawa</td><td>T32–T37</td><td>~80 over 3 days</td><td>Susaki, Nakatosa, Kubokawa</td></tr>
+        <tr><td>22–24</td><td>Kubokawa → Cape Ashizuri</td><td>T37–T38</td><td>~90 over 3 days</td><td>Iwamoto-ji shukubō, Tosashimizu</td></tr>
+        <tr><td>25 <span class="rest">★ rest</span></td><td>Tosashimizu (Ashizuri)</td><td>—</td><td>—</td><td>Cape views, hot spring, recovery</td></tr>
+        <tr><td>26–28</td><td>Ashizuri → Sukumo → Ehime border</td><td>T39</td><td>~75 over 3 days</td><td>Sukumo business hotel</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Ehime · 18 days (enlightenment)</h3>
+    <p>
+      The longest prefecture for temple count (26 temples). Two highlights: <em>Yokomine-ji</em>
+      (T60) is a steep climb, and Matsuyama — home to Dōgo Onsen, the oldest hot
+      spring in Japan — is your big rest stop.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Day</th><th>Stage</th><th>Temples</th><th>km</th><th>Stay</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>29–31</td><td>Ehime border → Uwajima</td><td>T40–T43</td><td>~70</td><td>Uwajima ryokan</td></tr>
+        <tr><td>32–33</td><td>Uwajima → Ōzu</td><td>T44</td><td>~55</td><td>Ōzu business hotel</td></tr>
+        <tr><td>34</td><td>Ōzu → Iwaya-ji area</td><td>T44–T45</td><td>~30 (mountain temple)</td><td>Furuiwaya minshuku</td></tr>
+        <tr><td>35–36</td><td>Iwaya-ji → Matsuyama outskirts</td><td>T46–T50</td><td>~50</td><td>Approach Matsuyama from the west</td></tr>
+        <tr><td>37 <span class="rest">★ rest</span></td><td>Matsuyama / Dōgo Onsen</td><td>—</td><td>—</td><td><strong>Dōgo Onsen Honkan</strong> — soak, sleep, eat</td></tr>
+        <tr><td>38</td><td>Matsuyama temples</td><td>T51–T53</td><td>~25</td><td>Matsuyama (second night)</td></tr>
+        <tr><td>39–40</td><td>Matsuyama → Imabari</td><td>T54–T58</td><td>~55</td><td>Imabari business hotel</td></tr>
+        <tr><td>41 <span class="warn">⚠</span></td><td>Imabari → Yokomine-ji</td><td>T59–T60</td><td>~25 (steep climb to T60)</td><td>Saijō minshuku</td></tr>
+        <tr><td>42–44</td><td>Saijō → Niihama → Kagawa border</td><td>T61–T65</td><td>~70</td><td>Niihama, then Kawanoe</td></tr>
+        <tr><td>45 <span class="rest">★ rest</span></td><td>Kawanoe / Mishima</td><td>—</td><td>—</td><td>Hot spring rest before final stretch</td></tr>
+        <tr><td>46</td><td>Buffer / catch-up</td><td>—</td><td>—</td><td>Flexible</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Kagawa · 9 days (nirvana)</h3>
+    <p>
+      The shortest, gentlest stretch. Lots of close-together temples, Sanuki udon
+      everywhere, and the symbolic weight of finishing builds. <em>Zentsū-ji (T75)</em>
+      is Kūkai's birthplace — try to sleep there.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Day</th><th>Stage</th><th>Temples</th><th>km</th><th>Stay</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>47</td><td>Kagawa border → Kanonji</td><td>T66–T68</td><td>~25</td><td>Kanonji business hotel</td></tr>
+        <tr><td>48</td><td>Kanonji → Zentsū-ji</td><td>T69–T75</td><td>~30</td><td><strong>Zentsū-ji shukubō</strong> (book ahead)</td></tr>
+        <tr><td>49</td><td>Zentsū-ji → Marugame</td><td>T76–T78</td><td>~22</td><td>Marugame business hotel</td></tr>
+        <tr><td>50</td><td>Marugame → Sakaide → Takamatsu</td><td>T79–T82</td><td>~28</td><td>Takamatsu business hotel</td></tr>
+        <tr><td>51</td><td>Takamatsu temples</td><td>T83–T85</td><td>~25</td><td>Takamatsu (second night)</td></tr>
+        <tr><td>52</td><td>Takamatsu → Shido</td><td>T86–T87</td><td>~20</td><td>Shido minshuku</td></tr>
+        <tr><td>53 <span class="warn">⚠</span></td><td>Shido → Ōkubo-ji (T88) — the finish</td><td>T88</td><td>~25 (mountain finish)</td><td>Ōkubo-ji shukubō or Nagao town</td></tr>
+        <tr><td>54</td><td>Ohenro-modori — return walk to T1</td><td>—</td><td>~40 (optional, 1–2 days)</td><td>Or skip and travel back</td></tr>
+        <tr><td>55</td><td>Travel to Mount Kōya (optional)</td><td>—</td><td>—</td><td>Mount Kōya shukubō to "close" the pilgrimage</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Getting to the start — Temple 1 (Ryōzen-ji, Tokushima)</h2>
+    <p>Ryōzen-ji is in Naruto City, Tokushima Prefecture. Closest station: <strong>JR Bandō</strong>, a 10-minute walk to the temple.</p>
+
+    <h4>From Tokyo</h4>
+    <ul>
+      <li><strong>Train (4–5 hrs):</strong> Tōkaidō/Sanyō Shinkansen Tokyo → Okayama (~3:20), then Marine Liner to Takamatsu (~1 hr), then JR Kōtoku Line to Bandō (~1 hr). Total ~5–6 hrs incl. transfers.</li>
+      <li><strong>Plane (3 hrs door-to-door):</strong> Haneda → Tokushima Airport (~75 min flight), then limousine bus to Tokushima Station (~30 min), then train to Bandō (~30 min).</li>
+    </ul>
+
+    <h4>From Osaka / Kansai Airport</h4>
+    <ul>
+      <li><strong>Bus (~3 hrs):</strong> Osaka Umeda → Tokushima Highway Bus. From Tokushima Station, JR to Bandō.</li>
+      <li><strong>Train:</strong> Shin-Osaka → Okayama (~50 min Shinkansen) → Takamatsu (Marine Liner) → Bandō.</li>
+    </ul>
+
+    <h4>Tip</h4>
+    <p>
+      Most pilgrims spend the first night in <strong>Tokushima City</strong> the day before
+      and start fresh at Ryōzen-ji in the morning. Buy your hakui, sugegasa, nōkyōchō,
+      and walking stick at the temple's <em>henro shop</em> right there — it's the
+      traditional first act.
+    </p>
+
+    <h2>Getting back from the end — Temple 88 (Ōkubo-ji, Kagawa)</h2>
+    <p>Ōkubo-ji is in Sanuki City, Kagawa, on a hillside above Nagao town.</p>
+    <ul>
+      <li>From Ōkubo-ji: walk or taxi to <strong>JR Nagao Station</strong> (~7 km).</li>
+      <li>JR Nagao → Takamatsu (~50 min). Takamatsu is the main hub.</li>
+      <li>From Takamatsu:
+        <ul>
+          <li>Marine Liner → Okayama (~1 hr) → Shinkansen to Tokyo (~3:30) or Osaka (~45 min).</li>
+          <li>Fly: Takamatsu Airport → Tokyo Haneda (~80 min).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Optional: continue to Mount Kōya</h4>
+    <p>
+      Traditional closing: after the 88, take the train to <strong>Wakayama</strong>,
+      then Nankai Railway to <em>Gokurakubashi</em>, then cable car up to Mount Kōya.
+      Stay at one of the temple shukubō (Eko-in is popular), pay respects at Okunoin
+      where Kūkai is interred. <em>Add 2–3 days.</em>
+    </p>
+
+    <h2>Stamps — the nōkyōchō</h2>
+    <p>The book that <em>is</em> the pilgrimage.</p>
+    <ol>
+      <li><strong>Buy a nōkyōchō at Temple 1.</strong> ~¥2,500–3,500 depending on
+        binding. (Or a hanging scroll / robe-stamp version for the obsessive.)</li>
+      <li><strong>At each temple:</strong> ring the bell, recite the heart sutra (or
+        just stand quietly), then go to the <em>nōkyō-sho</em> (stamp office) and hand
+        over the book. The monk writes the temple name and main deity in calligraphy
+        and adds three vermilion seals.</li>
+      <li><strong>Cost:</strong> ¥300 per stamp. So ¥26,400 total for all 88. Cash only.</li>
+      <li><strong>Hours:</strong> 7:00 – 17:00 typically. Off-season some close at
+        16:00. Plan your daily endpoint to arrive before close.</li>
+      <li><strong>Etiquette:</strong> hat off, bell rung, sutras left in the offering
+        box if you carry them. Don't take the book apart. Don't take photos in the
+        stamp office.</li>
+    </ol>
+
+    <h2>Completion — the Shikoku version of the Compostela</h2>
+    <p>
+      Shikoku doesn't issue a Compostela like Santiago. The <strong>nōkyōchō with 88
+      stamps is itself the certificate</strong>. But there are layers of "completion":
+    </p>
+    <ul>
+      <li><strong>Kechigan (結願)</strong> — finishing the 88th temple. Receive a
+        special kechigan stamp at Ōkubo-ji.</li>
+      <li><strong>Ohenro-modori (お遍路戻り)</strong> — returning to Temple 1 to "close
+        the circle." Many do this; some walk back the ~40 km from Ōkubo-ji to
+        Ryōzen-ji over 1–2 days.</li>
+      <li><strong>Mount Kōya pilgrimage</strong> — pay respects at Okunoin where
+        Kūkai is interred. <em>The traditional final step.</em> Receive the stamp at
+        Okunoin and your book is "closed."</li>
+      <li><strong>Official completion certificate</strong> — issued by the
+        <em>Shikoku 88-temple Pilgrimage Association</em> (四国八十八ヶ所霊場会).
+        Submit your completed nōkyōchō by mail. ~¥3,000. They send a paper certificate
+        in return.</li>
+    </ul>
+
+    <h2>Where to stay — the lodging menu</h2>
+    <ul>
+      <li><strong>Shukubō (宿坊)</strong> — temple lodging. ~30–40 temples on the route
+        offer this. ¥6,000–8,000 with dinner + breakfast. Vegetarian shōjin-ryōri,
+        morning sutras. <em>Book ahead.</em> Top picks: <strong>Anraku-ji (T6)</strong>,
+        <strong>Iwamoto-ji (T37)</strong>, <strong>Zentsū-ji (T75)</strong>.</li>
+      <li><strong>Minshuku (民宿)</strong> — family-run inns. ¥6,000–9,000 with two
+        meals. Traditional, often very pilgrim-friendly. The default for most nights.</li>
+      <li><strong>Ryokan (旅館)</strong> — fancier traditional inns. ¥10,000–18,000.
+        Save for rest-day towns.</li>
+      <li><strong>Business hotels</strong> — ¥5,000–8,000. Wifi, laundry. Best for
+        rest days and stops in bigger towns (Tokushima, Kōchi, Matsuyama,
+        Takamatsu).</li>
+      <li><strong>Henro-goya (遍路小屋)</strong> — ~80 free wooden shelters built by
+        supporters. Roof and a bench, sometimes a toilet. Sleeping in them is fine for
+        emergencies; not a daily plan.</li>
+      <li><strong>Tsuyado / zenkonyado (通夜堂 / 善根宿)</strong> — free pilgrim lodging,
+        usually at temples or homes. Very basic. A small gratuity (¥500–1,000) is good
+        form. Ask in town if anyone offers <em>"tsuyadō wa arimasuka?"</em></li>
+    </ul>
+
+    <h2>Gear — the pilgrim kit</h2>
+    <ul>
+      <li><strong>Hakui (白衣)</strong> — white robe. Bought at T1. Don't replace it
+        when it gets dirty; it earns the wear.</li>
+      <li><strong>Sugegasa (菅笠)</strong> — conical hat. Bought at T1. Rain + sun. The
+        inscription reads <em>"Dōgyō-ninin"</em> — "we walk together (with Kōbō Daishi)."</li>
+      <li><strong>Kongō-zue (金剛杖)</strong> — walking stick. Bought at T1.
+        Symbolically <em>is</em> Kōbō Daishi walking with you. Wash its tip before
+        entering lodging. Don't tap it on bridges (out of respect — Kōbō Daishi is said
+        to be sleeping there).</li>
+      <li><strong>Nōkyōchō, juzu (beads), bell, sutra book</strong> — the rest of the kit.</li>
+      <li><strong>Practical:</strong> good trail shoes (broken in), one set of warm
+        clothes (mountains get cold even in summer), rain gear, blister tape, sunscreen,
+        20 L pack max. Lodgings do laundry — pack light.</li>
+    </ul>
+
+    <h2>Budget</h2>
+    <p>For a 55-day walking pilgrimage, planning to stay in minshuku/shukubō most nights:</p>
+    <ul>
+      <li><strong>Lodging (~50 nights paid):</strong> ¥350,000 (~€2,200)</li>
+      <li><strong>Stamps:</strong> ¥26,400</li>
+      <li><strong>Lunch + snacks on the trail:</strong> ¥80,000 (~€500)</li>
+      <li><strong>Trains + buses (transit days):</strong> ¥30,000</li>
+      <li><strong>Gear at T1:</strong> ¥15,000–25,000</li>
+      <li><strong>Total:</strong> roughly <strong>¥500,000 (~€3,200)</strong> for the trip
+        body, before international flights and Mount Kōya add-on.</li>
+    </ul>
+    <p>
+      Japan is still <strong>cash-heavy outside cities</strong> — pull a big chunk at a
+      Post Office or 7-Eleven ATM in Tokushima before starting.
+    </p>
+
+    <h2>When to go</h2>
+    <ul>
+      <li><strong>Best:</strong> March – early May, and October – November. Cherry
+        blossom or autumn colour, mild temperatures.</li>
+      <li><strong>Avoid:</strong> June–July (rainy season) and August (oppressively
+        humid). January–February is doable but cold in mountain passes.</li>
+      <li>Many do it in spring; expect more shared shukubō rooms and friendlier "fellow
+        ohenro" energy.</li>
+    </ul>
+
+    <h2>Resources worth bookmarking</h2>
+    <ul>
+      <li><a href="https://88shikokuhenro.jp/en/" target="_blank" rel="noreferrer">Shikoku 88 Association — official English site</a> — the canonical reference.</li>
+      <li><a href="https://www.tourismshikoku.org/" target="_blank" rel="noreferrer">Tourism Shikoku</a> — regional info, sometimes day-by-day notes.</li>
+      <li><strong>David Moreton — Shikoku Japan 88 Route Guide.</strong> The print
+        pilgrim guide most walking pilgrims carry. Order before flying out.</li>
+      <li><strong>Henro Service app</strong> (iOS / Android) — GPS, temple info,
+        offline maps. The de facto pilgrim app.</li>
+      <li><a href="https://www.henrohouse.jp/en/" target="_blank" rel="noreferrer">Henro House</a> — network of pilgrim-friendly lodgings, online booking.</li>
+    </ul>
+
+    <h2>Things they don't tell you</h2>
+    <ul>
+      <li>Locals call walking pilgrims <em>ohenro-san</em> and routinely offer
+        <strong>osettai</strong> — gifts of food, drink, sometimes money. You must
+        accept (refusing is rude). Carry small <em>osamefuda</em> cards to give back as
+        thanks.</li>
+      <li>Most pilgrims today do the route by bus or car. <em>Walking pilgrims are
+        rare and respected.</em> You'll be treated very kindly.</li>
+      <li>The hardest stretch is days 24–28 (Kōchi west coast). Long, empty, beautiful,
+        a bit demoralising. Plan a real rest day after.</li>
+      <li>"Henrokorogashi" (遍路ころがし) = "pilgrim killers." Days T11→T12, T20→T21,
+        the Yokomine-ji climb, and the T87→T88 finish. Steep, sometimes muddy, often
+        wonderful.</li>
+      <li>If a day's plan falls apart, there's almost always a JR or local bus you
+        can use to skip a stretch. The pilgrimage doesn't mind. <em>"Walk what you can,
+        accept what you can't."</em></li>
+    </ul>
+
+    <div class="footnote">
+      Compiled from public sources and pilgrim accounts. Distances are approximate —
+      the route splits and re-splits, especially in Kōchi. Verify each day's
+      lodging by phone or via the Henro Service app before walking out. Numbers are
+      planning estimates, not guarantees.
+    </div>
+  </div>
+</body>
+</html>
