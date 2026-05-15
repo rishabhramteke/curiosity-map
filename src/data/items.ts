@@ -194,106 +194,104 @@ export const ITEMS: Curiosity[] = [
     status: 'todo',
   },
 
-  // ─── Travel · Valencia ───────────────────────
+  // ─── Travel · Seoul ──────────────────────────
   {
-    id: 'val-fallas',
-    title: 'Stand inside Las Fallas — Valencia',
+    id: 'seo-bbq',
+    title: 'Korean BBQ + soju at 2am in Hongdae',
     description:
-      'Mid-March chaos. Enormous wooden ninots burning in the streets, mascletàs at 2pm in the plaza, the whole city outside for a week. The kind of festival you don\'t watch — you stand inside it.',
+      'Grill thick belly pork at the table, wrap with garlic and ssamjang, soju shot, repeat. Find strangers at the next table by 1am. Lost-voice by 3am. Earned ramyeon by 4am.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'val-paella',
-    title: 'Eat paella where it was actually invented',
+    id: 'seo-jjimjilbang',
+    title: 'Sleep overnight at a jjimjilbang',
     description:
-      'Not in Madrid, not in Barcelona — Sunday lunch at one of the old paellas in L\'Albufera, just outside Valencia. Rabbit and snail. No chorizo. Argue about it after.',
+      'Hot rooms, cold rooms, salt rooms, the egg-shaped hwangto kiln. Eat boiled eggs and shikhye in pyjamas. Pass out on a wooden pillow. Cheaper than a hostel, weirder than camping.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'val-horchata',
-    title: 'Horchata + fartons at a proper horchatería',
+    id: 'seo-bukhansan',
+    title: 'Sunrise hike up Bukhansan',
     description:
-      'Daniel or Santa Catalina. Cold tigernut horchata, sugar-glazed fartons for dipping. Forty-five minutes, phone in pocket.',
-    theme: 'travel',
-    status: 'todo',
-  },
-
-  // ─── Travel · Barcelona ──────────────────────
-  {
-    id: 'bcn-bunkers',
-    title: 'Sunrise breakfast at Bunkers del Carmel',
-    description:
-      'Walk up before dawn with a thermos of coffee and a bocadillo. The city wakes up under my feet. Get there sleepy, leave wide awake.',
+      'Granite peaks above Seoul. Headlamp in the dark, sky pinking by the time the summit is in view. Breakfast at the top — kimbap and instant coffee, hands frozen.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'bcn-calcotada',
-    title: 'A proper calçotada in season',
+    id: 'seo-chimaek',
+    title: 'Chi-maek by the Han River',
     description:
-      'Jan–March. Bib on, gloves optional. Char a hundred spring onions over the grill, dip in romesco, eat with my hands. Then meat. Then crema catalana. Then nap.',
+      'Fried chicken (yangnyeom + soy garlic, both) and a cold lager, on a mat under the bridges in summer. Yeouido or Banpo. Bring friends, bring more than I think I need.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'bcn-midnight-swim',
-    title: 'Midnight swim at Barceloneta',
+    id: 'seo-noraebang',
+    title: 'Noraebang until the timer runs out',
     description:
-      'After dinner, clothes folded on the sand, into the sea. Empty beach, warm August water, the city humming behind me. Don\'t bring anyone I wouldn\'t be honest with.',
+      'Private karaoke room, two hours minimum. Ballads + shouty K-rock + one English song nobody knows. Tambourine compulsory. Buy the extra time when it asks.',
     theme: 'travel',
     status: 'todo',
   },
 
-  // ─── Travel · Madrid ─────────────────────────
+  // ─── Travel · Shikoku 88 (Japan Camino) ──────
   {
-    id: 'mad-tortilla',
-    title: 'Argue over the best tortilla de patatas in Madrid',
+    id: 'shi-section',
+    title: 'Walk a section of the Shikoku 88-temple pilgrimage',
     description:
-      'Pick five spots — Casa Dani, Sylkar, Las Bravas, whatever. Eat one a week. Have an opinion (poco hecha vs. cuajada, with onion vs. without). Defend it loudly.',
+      'In the white hakui and conical sugegasa hat, walking stick in hand. Even one of the four prefectures is enough. Get the nōkyōchō stamp book — every temple\'s seal.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'mad-cocido',
-    title: 'Cocido madrileño on a cold day',
+    id: 'shi-temple-stay',
+    title: 'Sleep at a temple along the way (shukubō)',
     description:
-      'Lhardy or Casa Carola. Three vuelcos — broth first, chickpeas second, meats third. Two-hour lunch. Mandatory siesta after.',
+      'At least one night in a temple lodging. Sunset bath, vegetarian shōjin-ryōri dinner, morning sutras before the next stretch. Dawn-quiet that feels like another century.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'mad-rooftop',
-    title: 'Sunset from Círculo de Bellas Artes',
+    id: 'shi-dogo',
+    title: 'Soak at Dōgo Onsen',
     description:
-      'Pay the few euros, take the elevator. The city stretching out, the Sierra in the distance, drink in hand. Stay until the lights come on across the rooftops.',
+      'Oldest hot spring in Japan — 3,000 years of bathing. Matsuyama, Ehime. Best done as the reward at the end of a Henro stretch, body tired, robe loose.',
     theme: 'travel',
     status: 'todo',
   },
 
-  // ─── Travel · Camino ─────────────────────────
+  // ─── Travel · Tunisia (one week) ─────────────
   {
-    id: 'cam-iratxe',
-    title: 'Drink from the wine fountain at Irache',
+    id: 'tun-sahara',
+    title: 'A night in the Sahara',
     description:
-      '~5 km out of Estella. Free red wine for pilgrims since 1991. The sign reads: "Drink with moderation. We want to see you arrive at Santiago full of energy." Don\'t take all of it.',
+      'Berber camp at Ksar Ghilane or near Douz. Camel out at dusk, eat by firelight, lie on my back under the Milky Way — nothing the city ever showed me. Sleep in a tent, wake to silence.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'cam-pulpo',
-    title: 'Pulpo a feira at Pulpería Ezequiel — Melide',
+    id: 'tun-starwars',
+    title: 'Star Wars filming-location pilgrimage',
     description:
-      'Octopus, paprika, olive oil, rough salt, on a wooden plate. Eat standing if it\'s busy. Pair with a Ribeiro in a small ceramic cup. Worth detouring half a stage.',
+      'Matmata troglodyte houses (the Lars homestead). Ong Jemel dunes. Tataouine (yes, the actual town). Wear something white. Take dorky photos without irony.',
     theme: 'travel',
     status: 'todo',
   },
   {
-    id: 'cam-finisterre',
-    title: 'Walk to Finisterre after Santiago',
+    id: 'tun-brik',
+    title: 'Eat brik à l\'oeuf without breaking the yolk',
     description:
-      '~90 km extra. The traditional ending — to the "end of the world," watch the sun drop into the Atlantic, burn an old shirt on the rocks (the pilgrim ritual). The Camino doesn\'t end at the cathedral; it ends at the sea.',
+      'Crispy pastry triangle, runny egg inside. Bite, don\'t fold. The unbroken yolk is the win — the broken yolk is the lesson. A challenge for the whole table.',
+    theme: 'travel',
+    status: 'todo',
+  },
+  {
+    id: 'tun-hammam',
+    title: 'Scrub at a traditional hammam',
+    description:
+      'Steam, kese mitt, a stranger\'s rough hands, layers of skin I didn\'t know I had. Awkward at first, like new. Walk out lighter than I arrived.',
     theme: 'travel',
     status: 'todo',
   },
