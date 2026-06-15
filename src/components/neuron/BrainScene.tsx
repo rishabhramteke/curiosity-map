@@ -12,7 +12,7 @@ import {
   type Tract,
 } from '../../utils/connectome';
 
-const IDLE_COLOR = '#33406b';
+const IDLE_COLOR = '#6b7587'; // grey when a region isn't firing
 
 // soft round glow sprite, drawn once
 function makeGlowTexture(): THREE.Texture {
@@ -130,9 +130,9 @@ export default function BrainScene({ levelOf, colorOf, onHoverRegion }: Props) {
           size={0.022}
           sizeAttenuation
           map={glow}
-          color="#8aa0e0"
+          color="#97a0b3"
           transparent
-          opacity={0.55}
+          opacity={0.5}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />

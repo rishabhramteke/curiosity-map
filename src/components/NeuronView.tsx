@@ -5,8 +5,7 @@ import { ALL_REGION_IDS, REGION_BY_ID, THEME_REGIONS, type RegionId } from '../d
 import { THEMES, THEME_BY_ID } from '../data/themes';
 import type { Curiosity, ThemeId } from '../types';
 
-const BASELINE_COLOR = '#67e8f9'; // regions your in-progress quests keep warm
-const ENGAGED_STATUSES = new Set(['doing', 'review', 'done']);
+const IDLE_GREY = '#6b7587'; // a region with nothing firing
 
 function blendHex(hexes: string[]): string {
   if (hexes.length === 1) return hexes[0];
@@ -32,16 +31,6 @@ export default function NeuronView({ items }: Props) {
   const [hoveredRegion, setHoveredRegion] = useState<RegionId | null>(null);
 
   const itemById = useMemo(() => new Map(items.map((it) => [it.id, it])), [items]);
-
-  // Regions your in-progress / done quests keep firing (a faint standing glow).
-  const engaged = useMemo(() => {
-    const set = new Set<RegionId>();
-    for (const it of items) {
-      if (ENGAGED_STATUSES.has(it.status)) for (const r of THEME_REGIONS[it.theme]) set.add(r);
-    }
-    return set;
-  }, [items]);
-  const engagedKey = useMemo(() => [...engaged].sort().join(','), [engaged]);
   const selectedKey = useMemo(() => [...selectedIds].sort().join(','), [selectedIds]);
 
   // Each selected (and the hovered) quest contributes its theme colour to the
@@ -72,17 +61,14 @@ export default function NeuronView({ items }: Props) {
       if (cols && cols.length) {
         level[id] = 1;
         color[id] = blendHex(cols);
-      } else if (engaged.has(id)) {
-        level[id] = 0.4;
-        color[id] = BASELINE_COLOR;
       } else {
         level[id] = 0;
-        color[id] = BASELINE_COLOR;
+        color[id] = IDLE_GREY;
       }
     }
     return { levelOf: level, colorOf: color };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedKey, previewId, engagedKey, itemById]);
+  }, [selectedKey, previewId, itemById]);
 
   const total = ALL_REGION_IDS.length;
   const firing = ALL_REGION_IDS.filter((id) => levelOf[id] > 0);
@@ -171,7 +157,9 @@ export default function NeuronView({ items }: Props) {
             )}
           </div>
 
-          {dark.length > 0 ? (
+          {firing.length === 0 ? (
+            <p className="mt-2 text-xs text-slate-400">Nothing firing yet — tap a quest to light it up.</p>
+          ) : dark.length > 0 ? (
             <p className="mt-2 text-xs text-amber-300/90">
               Still dark: {dark.map((id) => REGION_BY_ID[id].name).join(', ')}.
             </p>
