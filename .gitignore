@@ -4,6 +4,7 @@ dist
 .DS_Store
 .vite
 *.tsbuildinfo
+next_steps.md
 
 .env
 .env.local
