@@ -57,15 +57,23 @@ interface Cluster {
 const CLUSTERS: Record<RegionId, Cluster> = {
   prefrontal: { r: [0.4, 0.46, 0.46], count: 300, shell: 0.55, noise: 0.05 },
   motor: { r: [0.34, 0.2, 0.24], count: 130, shell: 0.5, noise: 0.045 },
+  somatosensory: { r: [0.32, 0.2, 0.22], count: 120, shell: 0.5, noise: 0.045 },
   parietal: { r: [0.36, 0.4, 0.42], count: 230, shell: 0.55, noise: 0.05 },
   temporal: { r: [0.3, 0.3, 0.6], count: 260, shell: 0.55, noise: 0.05 },
   occipital: { r: [0.34, 0.34, 0.32], count: 190, shell: 0.55, noise: 0.05 },
   broca: { r: [0.16, 0.16, 0.16], count: 50, shell: 0.4, noise: 0.04 },
+  wernicke: { r: [0.16, 0.16, 0.18], count: 50, shell: 0.4, noise: 0.04 },
+  cingulate: { r: [0.12, 0.18, 0.42], count: 120, shell: 0.35, noise: 0.035 },
   hippocampus: { r: [0.16, 0.12, 0.34], count: 70, shell: 0.3, noise: 0.03 },
   amygdala: { r: [0.14, 0.14, 0.14], count: 45, shell: 0.3, noise: 0.03 },
+  thalamus: { r: [0.16, 0.16, 0.2], count: 75, shell: 0.3, noise: 0.03 },
+  hypothalamus: { r: [0.1, 0.1, 0.12], count: 35, shell: 0.25, noise: 0.025 },
   cerebellum: { r: [0.62, 0.34, 0.42], count: 430, shell: 0.4, noise: 0.028 },
   basalGanglia: { r: [0.18, 0.2, 0.22], count: 80, shell: 0.3, noise: 0.03 },
+  accumbens: { r: [0.12, 0.12, 0.14], count: 40, shell: 0.25, noise: 0.03 },
   insula: { r: [0.16, 0.18, 0.2], count: 60, shell: 0.3, noise: 0.03 },
+  // brainstem is drawn as a bespoke tapering stalk below, not an ellipsoid blob
+  brainstem: { r: [0.16, 0.45, 0.18], count: 0, shell: 0.3, noise: 0.025 },
 };
 
 // A brain made of glowing "neurons", clustered by region, plus a brainstem stalk.

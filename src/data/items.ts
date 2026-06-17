@@ -521,6 +521,14 @@ export const ITEMS: Curiosity[] = [
     status: 'todo',
   },
   {
+    id: 'mov-marine',
+    title: 'Find an ex-Marine and learn to fight from him',
+    description:
+      'Real self-defense from someone who lived it. Track one down, trade beers for lessons — striking, grappling, reading a room before it goes wrong. Less sport, more the kind that gets you home.',
+    theme: 'movement',
+    status: 'todo',
+  },
+  {
     id: 'mov-stupidskill',
     title: 'Pick up a stupid useless skill',
     description:
