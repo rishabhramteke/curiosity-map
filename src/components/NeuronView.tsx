@@ -81,13 +81,6 @@ export default function NeuronView({ items }: Props) {
     return map;
   }, [items]);
 
-  function toggleQuest(id: string) {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
-      return next;
-    });
-  }
   function toggleTheme(themeId: ThemeId) {
     const ids = (itemsByTheme.get(themeId) ?? []).map((it) => it.id);
     setSelectedIds((prev) => {
@@ -141,7 +134,7 @@ export default function NeuronView({ items }: Props) {
         <div className="border-b border-white/10 p-4">
           <h2 className="font-display text-lg font-bold text-white">Rewire the network</h2>
           <p className="mt-1 text-xs text-slate-400">
-            Tap quests to fire the regions they train — pick several and watch more of the brain light up.
+            Tap a theme to fire the regions its quests train — stack several and watch more of the brain light up.
             Variety is how it stays plastic and sharp.
           </p>
 
@@ -158,7 +151,7 @@ export default function NeuronView({ items }: Props) {
           </div>
 
           {firing.length === 0 ? (
-            <p className="mt-2 text-xs text-slate-400">Nothing firing yet — tap a quest to light it up.</p>
+            <p className="mt-2 text-xs text-slate-400">Nothing firing yet — tap a theme to light it up.</p>
           ) : dark.length > 0 ? (
             <p className="mt-2 text-xs text-amber-300/90">
               Still dark: {dark.map((id) => REGION_BY_ID[id].name).join(', ')}.
@@ -194,8 +187,7 @@ export default function NeuronView({ items }: Props) {
                     const isSel = selectedIds.has(it.id);
                     return (
                       <li key={it.id}>
-                        <button
-                          onClick={() => toggleQuest(it.id)}
+                        <div
                           onMouseEnter={() => setPreviewId(it.id)}
                           onMouseLeave={() => setPreviewId((p) => (p === it.id ? null : p))}
                           className={`flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-[13px] transition-colors ${
@@ -213,7 +205,7 @@ export default function NeuronView({ items }: Props) {
                             {isSel ? '✓' : ''}
                           </span>
                           <span className="truncate">{it.title}</span>
-                        </button>
+                        </div>
                       </li>
                     );
                   })}
