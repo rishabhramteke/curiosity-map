@@ -7,11 +7,26 @@
   "scope": "/curiosity-map/",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#0b1028",
-  "theme_color": "#0b1028",
+  "background_color": "#EDEFEC",
+  "theme_color": "#EDEFEC",
   "icons": [
-    { "src": "/curiosity-map/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/curiosity-map/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/curiosity-map/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/curiosity-map/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/curiosity-map/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/curiosity-map/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

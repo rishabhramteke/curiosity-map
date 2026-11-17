@@ -14,7 +14,7 @@ interface Props {
 }
 
 const STATUS_BUTTON_LABEL: Record<Status, string> = {
-  todo: 'TODO',
+  todo: 'To do',
   doing: 'Doing',
   review: 'Review',
   done: 'Done',
@@ -37,39 +37,34 @@ export default function DetailPanel({ item, onClose }: Props) {
 
   return (
     <aside
-      className="pointer-events-auto fixed inset-y-0 right-0 z-20 flex w-full max-w-sm flex-col border-l border-white/10 bg-slate-950/85 shadow-2xl backdrop-blur-md animate-slide-in sm:w-[28rem]"
+      aria-label={item.title}
+      className="pointer-events-auto fixed inset-y-0 right-0 z-30 flex w-full max-w-full flex-col border-l-[1.5px] border-rule bg-paper shadow-[-8px_0_28px_-18px_rgba(35,21,24,0.45)] animate-slide-in sm:w-[28rem]"
     >
       {/* Header / curiosity content */}
-      <div className="flex flex-col gap-3 p-6 pb-4">
+      <div className="flex flex-col gap-4 overflow-y-auto p-6 pb-5">
         <header className="flex items-start justify-between gap-3">
           <div>
-            <span
-              className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
-              style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: palette.ink }}
-            >
-              {palette.label}
-            </span>
-            <h3 className="mt-2 font-display text-2xl font-bold leading-snug text-white">
-              {item.title}
-            </h3>
+            <h3 className="m-0 text-[1.9rem] leading-[1.05]">{item.title}</h3>
+            <p className="mb-0 mt-2 font-display text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-wine">
+              {palette.label} <span aria-hidden="true" className="tracking-normal" style={{ fontFamily: '"Apple Symbols", "Segoe UI Symbol", "DejaVu Sans", sans-serif' }}>{palette.zodiac + '\uFE0E'}</span>
+            </p>
           </div>
           <button
+            type="button"
             onClick={onClose}
             aria-label="Close"
-            className="-m-1 grid h-8 w-8 shrink-0 place-items-center rounded-full text-slate-400 transition hover:bg-white/5 hover:text-white"
+            className="-m-1 grid h-10 w-10 shrink-0 place-items-center text-winedeep transition-colors duration-200 hover:bg-winedeep hover:text-paper"
           >
-            ✕
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="square">
+              <path d="M3 3 L13 13 M13 3 L3 13" />
+            </svg>
           </button>
         </header>
 
         {/* Status switcher */}
         <div>
-          <div
-            role="radiogroup"
-            aria-label="Status"
-            className="grid grid-cols-4 gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1"
-          >
-            {STATUS_ORDER.map((s) => {
+          <div role="radiogroup" aria-label="Status" className="grid grid-cols-4 border-[1.5px] border-winedeep">
+            {STATUS_ORDER.map((s, i) => {
               const active = item.status === s;
               return (
                 <button
@@ -78,41 +73,24 @@ export default function DetailPanel({ item, onClose }: Props) {
                   role="radio"
                   aria-checked={active}
                   onClick={() => handleStatusChange(s)}
-                  className="rounded-full px-2 py-1.5 text-[11px] font-semibold transition"
-                  style={
-                    active
-                      ? {
-                          backgroundColor: palette.glow,
-                          color: '#0b1028',
-                        }
-                      : {
-                          color: '#94a3b8',
-                          backgroundColor: 'transparent',
-                        }
-                  }
-                  onMouseEnter={(e) => {
-                    if (!active) e.currentTarget.style.color = '#e2e8f0';
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!active) e.currentTarget.style.color = '#94a3b8';
-                  }}
+                  className={`px-2 py-2 text-[0.88rem] font-semibold transition-colors duration-200 ${i > 0 ? 'border-l border-winedeep/40' : ''} ${
+                    active ? 'bg-winedeep text-paper' : 'text-winedeep hover:bg-winedeep/10'
+                  }`}
                 >
                   {STATUS_BUTTON_LABEL[s]}
                 </button>
               );
             })}
           </div>
-          <p className="mt-1.5 text-[10px] text-slate-500">
-            Saved on this device only · edit <code className="rounded bg-white/5 px-1">items.ts</code> to publish.
+          <p className="mb-0 mt-2 font-serif text-[0.85rem] italic text-ink2">
+            Saved on this device only. Edit <code className="bg-paper2 px-1 font-mono text-[0.8em] not-italic">items.ts</code> to publish.
           </p>
         </div>
 
-        <p className="text-sm leading-relaxed text-slate-200">{item.description}</p>
+        <p className="m-0 font-serif text-[1.06rem] leading-relaxed text-ink">{item.description}</p>
 
         {item.note && (
-          <p className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm italic text-slate-300">
-            {item.note}
-          </p>
+          <p className="m-0 bg-paper2 px-4 py-3 font-serif text-[1rem] italic leading-relaxed text-ink2">{item.note}</p>
         )}
 
         {item.link && (
@@ -120,20 +98,21 @@ export default function DetailPanel({ item, onClose }: Props) {
             href={item.link}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-medium text-white transition hover:bg-white/20"
+            className="inline-flex w-fit items-center gap-2 border-[1.5px] border-winedeep px-4 py-2.5 text-[0.95rem] font-semibold text-winedeep no-underline transition-colors duration-200 hover:bg-winedeep hover:text-paper"
           >
-            Open link ↗
+            Open link
+            <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="square">
+              <path d="M5 11 L11 5 M6 5 H11 V10" />
+            </svg>
           </a>
         )}
       </div>
 
       {/* Recommendations heading */}
-      <div className="flex items-baseline justify-between border-t border-white/10 px-6 pt-4 pb-2">
-        <h4 className="font-display text-base font-bold text-white">
-          Recommend me ✨
-        </h4>
+      <div className="flex items-baseline justify-between border-t-[1.5px] border-rule px-6 pb-2 pt-4">
+        <h4 className="m-0 text-[1.3rem]">Recommend me something</h4>
         {recs.length > 0 && (
-          <span className="text-[11px] text-slate-400">
+          <span className="font-display text-[0.9rem] font-semibold tabular-nums text-wine">
             {recs.length} {recs.length === 1 ? 'suggestion' : 'suggestions'}
           </span>
         )}
@@ -145,12 +124,8 @@ export default function DetailPanel({ item, onClose }: Props) {
       </div>
 
       {/* Form pinned to the bottom */}
-      <div className="border-t border-white/10 bg-slate-950/60 p-4">
-        <RecommendationForm
-          curiosityId={item.id}
-          curiosityTitle={item.title}
-          palette={palette}
-        />
+      <div className="border-t border-rulesoft bg-paper2/60 p-5">
+        <RecommendationForm curiosityId={item.id} curiosityTitle={item.title} palette={palette} />
       </div>
     </aside>
   );

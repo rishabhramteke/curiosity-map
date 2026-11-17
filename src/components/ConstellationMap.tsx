@@ -7,6 +7,7 @@ import {
   buildLinks,
   clusterCenters,
   createSimulation,
+  radiusFor,
   type SimLink,
 } from '../utils/simulation';
 import StarNode from './StarNode';
@@ -184,12 +185,13 @@ export default function ConstellationMap({
 
   // Cluster centroids derived from current positions, used to anchor labels.
   const clusterLabels = useMemo(() => {
-    const byTheme = new Map<string, { sumX: number; sumY: number; n: number }>();
+    const byTheme = new Map<string, { sumX: number; sumY: number; n: number; maxY: number }>();
     for (const p of positions) {
-      const cur = byTheme.get(p.theme) ?? { sumX: 0, sumY: 0, n: 0 };
+      const cur = byTheme.get(p.theme) ?? { sumX: 0, sumY: 0, n: 0, maxY: -Infinity };
       cur.sumX += p.x;
       cur.sumY += p.y;
       cur.n += 1;
+      cur.maxY = Math.max(cur.maxY, p.y + radiusFor(p.status));
       byTheme.set(p.theme, cur);
     }
     return THEMES.map((t) => {
@@ -198,11 +200,11 @@ export default function ConstellationMap({
       return {
         theme: t,
         x: agg.sumX / agg.n,
-        // place label below the cluster
-        y: agg.sumY / agg.n + 60,
+        // name the constellation just below its lowest star
+        y: Math.min(height - 10, agg.maxY + 20),
       };
     }).filter(Boolean) as { theme: typeof THEMES[number]; x: number; y: number }[];
-  }, [positions]);
+  }, [positions, height]);
 
   const hovered = hoveredId ? positionById.get(hoveredId) : null;
 
@@ -210,23 +212,31 @@ export default function ConstellationMap({
     <svg
       viewBox={`0 0 ${width} ${height}`}
       className="block w-full h-full"
-      style={{
-        background:
-          'radial-gradient(ellipse at 30% 25%, #1c2454 0%, #0b1028 55%, #060919 100%)',
-      }}
+      role="img"
+      aria-label="Star chart of curiosities: each star is one, grouped into constellations by theme"
     >
-      {/* background twinkling dots */}
-      <g fill="#cbd5e1">
+      {/* graticule, as on a printed star chart */}
+      <g stroke="#8A2A3D" strokeWidth={1} opacity={0.1} aria-hidden="true">
+        {Array.from({ length: 7 }, (_, i) => (
+          <line key={`gx${i}`} x1={((i + 1) * width) / 8} y1={0} x2={((i + 1) * width) / 8} y2={height} />
+        ))}
+        {Array.from({ length: 5 }, (_, i) => (
+          <line key={`gy${i}`} x1={0} y1={((i + 1) * height) / 6} x2={width} y2={((i + 1) * height) / 6} />
+        ))}
+      </g>
+      <g fontFamily="Barlow Condensed, Barlow, sans-serif" fontSize={11} fontWeight={600} fill="#5A4549" letterSpacing="0.1em" aria-hidden="true">
+        {'ABCDEFGH'.split('').map((c, i) => (
+          <text key={c} x={((i + 0.5) * width) / 8} y={16} textAnchor="middle">{c}</text>
+        ))}
+        {Array.from({ length: 6 }, (_, i) => (
+          <text key={`r${i}`} x={8} y={((i + 0.5) * height) / 6} dominantBaseline="central">{i + 1}</text>
+        ))}
+      </g>
+
+      {/* faint catalogue stars */}
+      <g fill="#5A4549" opacity={0.32} aria-hidden="true">
         {bgStars.map((s, i) => (
-          <circle key={i} cx={s.x} cy={s.y} r={s.r}>
-            <animate
-              attributeName="opacity"
-              values="0.2;1;0.2"
-              dur={`${2.4 + (i % 3) * 0.6}s`}
-              begin={`${s.delay}s`}
-              repeatCount="indefinite"
-            />
-          </circle>
+          <circle key={i} cx={s.x} cy={s.y} r={s.r * 0.8} />
         ))}
       </g>
 
@@ -243,14 +253,14 @@ export default function ConstellationMap({
               textAnchor="middle"
               dominantBaseline="central"
               fontFamily="Apple Symbols, Segoe UI Symbol, DejaVu Sans, system-ui, sans-serif"
-              fontSize={96}
+              fontSize={104}
               fill={theme.ink}
-              opacity={muted ? 0.05 : 0.14}
+              opacity={muted ? 0.03 : 0.08}
               aria-hidden="true"
               className="pointer-events-none"
               style={{ transition: 'opacity 0.4s ease' }}
             >
-              {theme.zodiac}
+              {theme.zodiac + '\uFE0E'}
             </text>
           );
         })}
@@ -290,15 +300,16 @@ export default function ConstellationMap({
               x={label.x}
               y={label.y}
               textAnchor="middle"
-              fontFamily="Quicksand, Inter, sans-serif"
-              fontSize={11}
-              fontWeight={700}
+              fontFamily="Barlow Condensed, Barlow, sans-serif"
+              fontSize={13}
+              fontWeight={600}
+              letterSpacing="0.2em"
               fill={label.theme.ink}
-              opacity={muted ? 0.25 : 0.85}
-              className="pointer-events-none"
+              opacity={muted ? 0.3 : 1}
+              className="pointer-events-none halo"
               style={{ transition: 'opacity 0.4s ease' }}
             >
-              {label.theme.label}
+              {label.theme.label.toUpperCase()}
             </text>
           );
         })}

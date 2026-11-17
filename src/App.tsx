@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import ConstellationMap from './components/ConstellationMap';
 import DetailPanel from './components/DetailPanel';
 import Legend from './components/Legend';
+import SiteBar from './components/SiteBar';
 import { ITEMS } from './data/items';
 
 // three.js is heavy — only load it when the visitor opens the brain view.
@@ -24,8 +25,9 @@ export default function App() {
 
   useEffect(() => {
     const update = () => {
-      const w = Math.max(640, window.innerWidth);
-      const h = Math.max(420, Math.min(window.innerHeight - 96, 820));
+      const gutter = Math.min(32, Math.max(16, window.innerWidth * 0.022));
+      const w = Math.max(640, window.innerWidth - 2 * gutter - 3);
+      const h = Math.max(420, Math.min(window.innerHeight - 140, 820));
       setSize({ w, h });
     };
     update();
@@ -87,45 +89,38 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-      <header className="relative z-10 mx-auto flex max-w-6xl items-start justify-between gap-4 px-6 pt-8 pb-4">
+    <div className="relative min-h-screen overflow-hidden bg-paper text-ink">
+      <SiteBar />
+      <header className="relative z-10 mx-auto flex max-w-[1400px] flex-wrap items-end justify-between gap-x-8 gap-y-4 px-[var(--gutter)] pt-8 pb-5">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300/80">
-            a personal sky
-          </p>
-          <h1 className="mt-1 font-display text-3xl font-bold text-white sm:text-4xl">
-            Curiosity Map ✦
-          </h1>
-          <p className="mt-2 max-w-xl text-sm text-slate-300/80">
+          <h1 className="text-[clamp(2.3rem,5vw,3.6rem)] leading-none">Curiosity map</h1>
+          <p className="mt-3 max-w-[60ch] font-serif text-[1.05rem] italic leading-normal text-ink2">
             {view === 'constellation'
               ? 'Things I want to do, places I want to go, side quests, sparks. Each star is a curiosity; each constellation is a theme.'
-              : 'The same quests, as a brain. Every theme trains different regions — keep them all firing to stay sharp.'}
+              : 'The same quests, as a brain. Every theme trains different regions. Keep them all firing to stay sharp.'}
           </p>
         </div>
 
-        <div className="flex shrink-0 rounded-full border border-white/10 bg-white/5 p-1 text-xs font-semibold">
-          <button
-            onClick={() => setView('constellation')}
-            className={`rounded-full px-3 py-1.5 transition-colors ${
-              view === 'constellation' ? 'bg-white/15 text-white' : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            ✦ Constellation
-          </button>
-          <button
-            onClick={() => setView('neuron')}
-            className={`rounded-full px-3 py-1.5 transition-colors ${
-              view === 'neuron' ? 'bg-white/15 text-white' : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            🧠 Neuron activation
-          </button>
+        <div role="group" aria-label="View" className="flex shrink-0 border-[1.5px] border-winedeep text-[0.95rem] font-semibold">
+          {(['constellation', 'neuron'] as ViewMode[]).map((v) => (
+            <button
+              key={v}
+              type="button"
+              onClick={() => setView(v)}
+              aria-pressed={view === v}
+              className={`px-4 py-2.5 transition-colors duration-200 ${
+                view === v ? 'bg-winedeep text-paper' : 'text-winedeep hover:bg-winedeep/10'
+              }`}
+            >
+              {v === 'constellation' ? 'Star chart' : 'Neuron activation'}
+            </button>
+          ))}
         </div>
       </header>
 
       {view === 'constellation' ? (
         <>
-          <main className="relative">
+          <main className="relative mx-[var(--gutter)] mb-[var(--gutter)] border-[1.5px] border-rule">
             <div className="absolute inset-x-0 top-0 z-0">
               <ConstellationMap
                 items={effectiveItems}
@@ -138,11 +133,11 @@ export default function App() {
               />
             </div>
 
-            {/* spacer so layout reserves the SVG height */}
-            <div style={{ height: size.h }} />
+            {/* spacer so layout reserves the chart's drawn height at any width */}
+            <div style={{ aspectRatio: `${size.w} / ${size.h}` }} />
 
-            {/* legend overlay */}
-            <div className="pointer-events-none absolute left-4 top-4 z-10 sm:left-6 sm:top-6">
+            {/* legend: a title block over the chart on wide screens */}
+            <div className="pointer-events-none absolute left-4 top-4 z-10 hidden md:block lg:left-6 lg:top-6">
               <Legend
                 mutedThemes={mutedThemes}
                 onToggleTheme={toggleTheme}
@@ -150,14 +145,18 @@ export default function App() {
               />
             </div>
           </main>
+          {/* on phones the title block follows the chart */}
+          <div className="mx-[var(--gutter)] mb-[var(--gutter)] md:hidden">
+            <Legend mutedThemes={mutedThemes} onToggleTheme={toggleTheme} totalsByStatus={totalsByStatus} />
+          </div>
 
           {selected && <DetailPanel item={selected} onClose={() => setSelectedId(null)} />}
         </>
       ) : (
         <Suspense
           fallback={
-            <div className="flex h-[calc(100dvh-150px)] min-h-[460px] items-center justify-center text-sm text-slate-400">
-              waking up the neurons…
+            <div className="flex h-[calc(100dvh-150px)] min-h-[460px] items-center justify-center font-serif italic text-ink2">
+              Waking up the neurons…
             </div>
           }
         >

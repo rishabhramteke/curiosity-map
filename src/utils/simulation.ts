@@ -112,7 +112,9 @@ export function applyLinkForce(
   sim
     .force(
       'links',
-      forceLink<PositionedCuriosity, SimLink>(links)
+      // forceLink swaps each link's source/target ids for node objects in place, so give it
+      // its own copies; the caller keeps the id-based links to draw the constellation lines.
+      forceLink<PositionedCuriosity, SimLink>(links.map((l) => ({ ...l })))
         .id((d) => d.id)
         .distance(40)
         .strength(0.06)

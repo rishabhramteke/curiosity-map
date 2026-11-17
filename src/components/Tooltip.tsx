@@ -1,39 +1,33 @@
 import { THEME_BY_ID } from '../data/themes';
 import type { PositionedCuriosity } from '../types';
+import { STATUS_LABEL } from './Legend';
 
 interface Props {
   item: PositionedCuriosity;
   width: number;
 }
 
-const TOOLTIP_W = 220;
-const TOOLTIP_H = 56;
+const TOOLTIP_W = 232;
+const TOOLTIP_H = 62;
 
 export default function Tooltip({ item, width }: Props) {
   const palette = THEME_BY_ID[item.theme];
-  // Anchor the tooltip top-right of the star, but flip if it would overflow.
-  const flipX = item.x + 14 + TOOLTIP_W > width;
-  const x = flipX ? item.x - 14 - TOOLTIP_W : item.x + 14;
-  const y = Math.max(8, item.y - 28);
+  // Anchor the tooltip to the right of the star, but flip if it would overflow.
+  const flipX = item.x + 16 + TOOLTIP_W > width;
+  const x = flipX ? item.x - 16 - TOOLTIP_W : item.x + 16;
+  const y = Math.max(8, item.y - 31);
 
   return (
     <g transform={`translate(${x} ${y})`} className="pointer-events-none animate-fade-in">
-      <rect
-        width={TOOLTIP_W}
-        height={TOOLTIP_H}
-        rx={10}
-        fill="rgba(15, 23, 42, 0.92)"
-        stroke={palette.glow}
-        strokeOpacity={0.4}
-      />
-      <text x={12} y={20} fill="#ffffff" fontSize={11} fontWeight={700}>
+      <rect width={TOOLTIP_W} height={TOOLTIP_H} fill="#EDEFEC" stroke="#3A1D24" strokeWidth={1.5} />
+      <text x={12} y={22} fill="#231518" fontFamily="Barlow, sans-serif" fontSize={13} fontWeight={600}>
         {truncate(item.title, 30)}
       </text>
-      <text x={12} y={36} fill={palette.ink} fontSize={9} fontWeight={600}>
-        {palette.label} · {item.status}
+      <text x={12} y={38} fill="#8A2A3D" fontFamily="Barlow Condensed, Barlow, sans-serif" fontSize={11} fontWeight={600} letterSpacing="0.12em">
+        {palette.label.toUpperCase()} · {STATUS_LABEL[item.status].toUpperCase()}
       </text>
-      <text x={12} y={48} fill="#cbd5e1" fontSize={9} opacity={0.85}>
-        click to read more
+      <text x={12} y={53} fill="#5A4549" fontFamily="Source Serif 4, Georgia, serif" fontStyle="italic" fontSize={11}>
+        Click for the details
       </text>
     </g>
   );

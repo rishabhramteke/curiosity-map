@@ -1,15 +1,24 @@
 import type { Theme, ThemeId } from '../types';
 
+// The chart is printed in one ink, like a paper star atlas: constellations are told apart by
+// their place on the sheet, their name and their zodiac figure, not by colour.
+const INK = {
+  star: '#5B1426',              // wine-deep: star symbols
+  glow: '#8A2A3D',              // wine: highlights and active controls
+  line: 'rgba(138, 42, 61, 0.42)', // constellation lines
+  ink: '#5B1426',               // lettering
+};
+
 // Order matters — themes are placed clockwise around the canvas in this
 // sequence (see clusterCenters in utils/simulation.ts).
 export const THEMES: Theme[] = [
   {
     id: 'ai',
     label: 'AI & data',
-    star: '#c7d2fe',
-    glow: '#a5b4fc',
-    line: 'rgba(165,180,252,0.45)',
-    ink: '#c7d2fe',
+    star: INK.star,
+    glow: INK.glow,
+    line: INK.line,
+    ink: INK.ink,
     blurb: 'models, papers, datasets',
     zodiac: '♒',
     zodiacName: 'Aquarius',
@@ -17,10 +26,10 @@ export const THEMES: Theme[] = [
   {
     id: 'music',
     label: 'Music',
-    star: '#fde68a',
-    glow: '#facc15',
-    line: 'rgba(252,211,77,0.5)',
-    ink: '#fde68a',
+    star: INK.star,
+    glow: INK.glow,
+    line: INK.line,
+    ink: INK.ink,
     blurb: 'vinyl, listening, gigs',
     zodiac: '♎',
     zodiacName: 'Libra',
@@ -28,10 +37,10 @@ export const THEMES: Theme[] = [
   {
     id: 'travel',
     label: 'Travel',
-    star: '#a7f3d0',
-    glow: '#34d399',
-    line: 'rgba(110,231,183,0.45)',
-    ink: '#a7f3d0',
+    star: INK.star,
+    glow: INK.glow,
+    line: INK.line,
+    ink: INK.ink,
     blurb: 'trips, stays, slow days',
     zodiac: '♐',
     zodiacName: 'Sagittarius',
@@ -39,10 +48,10 @@ export const THEMES: Theme[] = [
   {
     id: 'pages',
     label: 'Pages',
-    star: '#fbcfe8',
-    glow: '#f472b6',
-    line: 'rgba(244,114,182,0.45)',
-    ink: '#fbcfe8',
+    star: INK.star,
+    glow: INK.glow,
+    line: INK.line,
+    ink: INK.ink,
     blurb: 'reading and writing',
     zodiac: '♓',
     zodiacName: 'Pisces',
@@ -50,10 +59,10 @@ export const THEMES: Theme[] = [
   {
     id: 'making',
     label: 'Making',
-    star: '#fdba74',
-    glow: '#fb923c',
-    line: 'rgba(251,146,60,0.45)',
-    ink: '#fdba74',
+    star: INK.star,
+    glow: INK.glow,
+    line: INK.line,
+    ink: INK.ink,
     blurb: 'hardware, tools, the house',
     zodiac: '♑',
     zodiacName: 'Capricorn',
@@ -61,10 +70,10 @@ export const THEMES: Theme[] = [
   {
     id: 'wishlist',
     label: 'Wishlist',
-    star: '#ddd6fe',
-    glow: '#a78bfa',
-    line: 'rgba(167,139,250,0.45)',
-    ink: '#ddd6fe',
+    star: INK.star,
+    glow: INK.glow,
+    line: INK.line,
+    ink: INK.ink,
     blurb: 'things to own someday',
     zodiac: '♉',
     zodiacName: 'Taurus',
@@ -72,10 +81,10 @@ export const THEMES: Theme[] = [
   {
     id: 'movement',
     label: 'Movement',
-    star: '#bef264',
-    glow: '#84cc16',
-    line: 'rgba(132,204,22,0.5)',
-    ink: '#bef264',
+    star: INK.star,
+    glow: INK.glow,
+    line: INK.line,
+    ink: INK.ink,
     blurb: 'sport, dance, fight, glide',
     zodiac: '♈',
     zodiacName: 'Aries',
@@ -83,10 +92,10 @@ export const THEMES: Theme[] = [
   {
     id: 'social',
     label: 'Social',
-    star: '#7dd3fc',
-    glow: '#38bdf8',
-    line: 'rgba(56,189,248,0.5)',
-    ink: '#7dd3fc',
+    star: INK.star,
+    glow: INK.glow,
+    line: INK.line,
+    ink: INK.ink,
     blurb: 'people, games, hosting',
     zodiac: '♊',
     zodiacName: 'Gemini',

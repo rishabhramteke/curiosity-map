@@ -10,36 +10,26 @@ interface Props {
 export default function RecommendationList({ recs, palette }: Props) {
   if (recs.length === 0) {
     return (
-      <p className="rounded-2xl border border-dashed border-white/10 px-3 py-6 text-center text-sm italic text-slate-400">
-        Be the first to recommend something ✨
+      <p className="m-0 border border-dashed border-rulesoft px-3 py-6 text-center font-serif italic text-ink2">
+        Be the first to recommend something.
       </p>
     );
   }
 
   return (
-    <ul className="space-y-2">
+    <ul className="m-0 list-none p-0">
       {recs.map((r) => {
         const author = r.authorName?.trim() || 'Anonymous';
         const isAnon = author === 'Anonymous';
         return (
-          <li
-            key={r.id}
-            className="rounded-2xl border border-white/5 bg-white/[0.04] p-3 animate-fade-in"
-          >
+          <li key={r.id} className="animate-fade-in border-b border-rulesoft py-3">
             <div className="flex items-baseline justify-between gap-2">
-              <span
-                className={`text-xs font-semibold ${isAnon ? 'italic' : ''}`}
-                style={{ color: isAnon ? '#94a3b8' : palette.ink }}
-              >
+              <span className={`text-[0.9rem] font-semibold ${isAnon ? 'italic text-ink2' : 'text-winedeep'}`} style={isAnon ? undefined : { color: palette.ink }}>
                 {author}
               </span>
-              <span className="text-[10px] text-slate-500">
-                {formatRelativeTime(r.createdAt)}
-              </span>
+              <span className="font-display text-[0.8rem] font-semibold tabular-nums text-ink2">{formatRelativeTime(r.createdAt)}</span>
             </div>
-            <p className="mt-1.5 whitespace-pre-wrap break-words text-sm leading-relaxed text-slate-100">
-              {r.body}
-            </p>
+            <p className="mb-0 mt-1.5 whitespace-pre-wrap break-words font-serif text-[1rem] leading-relaxed text-ink">{r.body}</p>
           </li>
         );
       })}

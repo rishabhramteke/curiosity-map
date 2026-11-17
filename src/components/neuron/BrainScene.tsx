@@ -12,7 +12,9 @@ import {
   type Tract,
 } from '../../utils/connectome';
 
-const IDLE_COLOR = '#6b7587'; // grey when a region isn't firing
+const IDLE_COLOR = '#B5A7AA'; // pale ink when a region isn't firing
+// Printed on paper, so everything blends normally (additive light would vanish on a light ground).
+const NORMAL = THREE.NormalBlending;
 
 // soft round glow sprite, drawn once
 function makeGlowTexture(): THREE.Texture {
@@ -130,11 +132,11 @@ export default function BrainScene({ levelOf, colorOf, onHoverRegion }: Props) {
           size={0.022}
           sizeAttenuation
           map={glow}
-          color="#97a0b3"
+          color="#5A4549"
           transparent
-          opacity={0.5}
+          opacity={0.38}
           depthWrite={false}
-          blending={THREE.AdditiveBlending}
+          blending={NORMAL}
         />
       </points>
 
@@ -143,7 +145,7 @@ export default function BrainScene({ levelOf, colorOf, onHoverRegion }: Props) {
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[idleSegments, 3]} />
         </bufferGeometry>
-        <lineBasicMaterial color="#2a3566" transparent opacity={0.32} depthWrite={false} blending={THREE.AdditiveBlending} />
+        <lineBasicMaterial color="#3A1D24" transparent opacity={0.1} depthWrite={false} blending={NORMAL} />
       </lineSegments>
 
       {/* lit tracts (coloured per active region) */}
@@ -153,7 +155,7 @@ export default function BrainScene({ levelOf, colorOf, onHoverRegion }: Props) {
             <bufferAttribute attach="attributes-position" args={[litPositions, 3]} />
             <bufferAttribute attach="attributes-color" args={[litColors, 3]} />
           </bufferGeometry>
-          <lineBasicMaterial vertexColors transparent opacity={0.9} depthWrite={false} blending={THREE.AdditiveBlending} />
+          <lineBasicMaterial vertexColors transparent opacity={0.78} depthWrite={false} blending={NORMAL} />
         </lineSegments>
       )}
 
@@ -164,14 +166,14 @@ export default function BrainScene({ levelOf, colorOf, onHoverRegion }: Props) {
             <bufferAttribute ref={pulseRef} attach="attributes-position" args={[pulsePositions, 3]} />
           </bufferGeometry>
           <pointsMaterial
-            size={0.075}
+            size={0.07}
             sizeAttenuation
             map={glow}
-            color="#ffffff"
+            color="#8A2A3D"
             transparent
             opacity={0.95}
             depthWrite={false}
-            blending={THREE.AdditiveBlending}
+            blending={NORMAL}
           />
         </points>
       )}
@@ -181,7 +183,7 @@ export default function BrainScene({ levelOf, colorOf, onHoverRegion }: Props) {
         const lvl = levelOf[h.regionId] ?? 0;
         const hex = lvl > 0.05 ? colorOf[h.regionId] : IDLE_COLOR;
         const base = new THREE.Color(hex);
-        const meshCol = base.clone().multiplyScalar(0.3 + lvl * 0.9);
+        const meshCol = lvl > 0.05 ? base : base.clone().lerp(new THREE.Color('#EDEFEC'), 0.15);
         const radius = 0.05 + lvl * 0.05;
         const haloScale = 0.18 + lvl * 0.7;
         return (
@@ -203,9 +205,9 @@ export default function BrainScene({ levelOf, colorOf, onHoverRegion }: Props) {
                 map={glow}
                 color={hex}
                 transparent
-                opacity={0.25 + lvl * 0.6}
+                opacity={0.05 + lvl * 0.13}
                 depthWrite={false}
-                blending={THREE.AdditiveBlending}
+                blending={NORMAL}
               />
             </sprite>
           </group>
@@ -223,17 +225,19 @@ export default function BrainScene({ levelOf, colorOf, onHoverRegion }: Props) {
             key={`lbl-${h.regionId}`}
             position={[h.pos[0], h.pos[1] + 0.2, h.pos[2]]}
             center
-            distanceFactor={7}
+            distanceFactor={5}
             zIndexRange={[10, 0]}
           >
             <div
               style={{
                 whiteSpace: 'nowrap',
-                fontSize: active ? 12 : 11,
+                fontFamily: "'Barlow Condensed', Barlow, sans-serif",
+                fontSize: active ? 11 : 10,
                 fontWeight: 600,
-                color: active ? colorOf[h.regionId] : '#8a99bd',
-                opacity: active ? 1 : 0.55,
-                textShadow: '0 1px 6px rgba(0,0,0,0.95)',
+                letterSpacing: '0.06em',
+                color: active ? '#5B1426' : '#5A4549',
+                opacity: active ? 1 : 0.7,
+                textShadow: '0 0 3px #EDEFEC, 0 0 6px #EDEFEC, 0 0 2px #EDEFEC',
                 pointerEvents: 'none',
                 transition: 'opacity .2s, color .2s',
               }}
