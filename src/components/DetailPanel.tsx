@@ -83,7 +83,7 @@ export default function DetailPanel({ item, onClose }: Props) {
             })}
           </div>
           <p className="mb-0 mt-2 font-serif text-[0.85rem] italic text-ink2">
-            Saved on this device only. Edit <code className="bg-paper2 px-1 font-mono text-[0.8em] not-italic">items.ts</code> to publish.
+            Your status changes are saved on this device only.
           </p>
         </div>
 

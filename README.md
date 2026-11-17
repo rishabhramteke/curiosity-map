@@ -1,6 +1,6 @@
 # Curiosity Map ✦
 
-> A constellation of curiosities — things to do, places to go, side quests, sparks.
+> A constellation of curiosities: things I want to learn, make and do, and places I want to go.
 
 A personal night-sky of interests. Items are stars, themes are constellations, the layout is driven by a `d3-force` physics simulation so the map feels alive without ever pretending to be a real map.
 

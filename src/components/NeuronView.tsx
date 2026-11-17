@@ -131,7 +131,7 @@ export default function NeuronView({ items }: Props) {
         <div className="border-b border-rulesoft p-4">
           <h2 className="m-0 text-[1.5rem]">Rewire the network</h2>
           <p className="mb-0 mt-1.5 font-serif text-[0.95rem] leading-snug text-ink2">
-            Tap a theme to fire the regions its quests train. Stack several and watch more of the brain light up.
+            Tap a theme to fire the regions its curiosities train. Stack several and watch more of the brain light up.
             Variety is how it stays plastic and sharp.
           </p>
 
@@ -170,7 +170,7 @@ export default function NeuronView({ items }: Props) {
                   onClick={() => toggleTheme(theme.id)}
                   aria-pressed={allOn}
                   className="flex w-full items-center gap-2.5 px-2 py-1.5 text-left transition-colors duration-200 hover:bg-winedeep/[0.06]"
-                  title="Select or clear every quest in this theme"
+                  title="Select or clear every curiosity in this theme"
                 >
                   <span aria-hidden="true" className={`h-2.5 w-2.5 border-[1.5px] border-winedeep ${allOn ? 'bg-winedeep' : ''}`} />
                   <span className="font-display text-[0.95rem] font-semibold uppercase tracking-[0.12em] text-winedeep">

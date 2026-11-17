@@ -1,7 +1,7 @@
 {
   "name": "Curiosity Map",
   "short_name": "Curiosity",
-  "description": "A constellation of curiosities — things to do, places to go, side quests, sparks.",
+  "description": "A constellation of curiosities: things I want to learn, make and do, and places I want to go.",
   "id": "/curiosity-map/",
   "start_url": "/curiosity-map/",
   "scope": "/curiosity-map/",

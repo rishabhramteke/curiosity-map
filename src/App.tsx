@@ -96,8 +96,8 @@ export default function App() {
           <h1 className="text-[clamp(2.3rem,5vw,3.6rem)] leading-none">Curiosity map</h1>
           <p className="mt-3 max-w-[60ch] font-serif text-[1.05rem] italic leading-normal text-ink2">
             {view === 'constellation'
-              ? 'Things I want to do, places I want to go, side quests, sparks. Each star is a curiosity; each constellation is a theme.'
-              : 'The same quests, as a brain. Every theme trains different regions. Keep them all firing to stay sharp.'}
+              ? 'Things I want to learn, make and do, and places I want to go. Each star is one curiosity; each constellation is a theme.'
+              : 'The same curiosities, as a brain. Every theme trains different regions. Keep them all firing to stay sharp.'}
           </p>
         </div>
 

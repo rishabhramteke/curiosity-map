@@ -6,11 +6,12 @@ export const ITEMS: Curiosity[] = [
   // ─── AI & data ────────────────────────────────────────────────────────
   {
     id: 'ai-mri',
-    title: 'Work with MRI data',
+    title: 'Get back to MRI data',
     description:
-      'Open MRI segmentation. fastMRI dataset, learn the physics of MR acquisition along the way — k-space, undersampling, all of it.',
+      'I clustered diffusion-MRI fibre tracts and reconstructed MRI images as a student (see Projects). Next round: fastMRI, rebuilding images from undersampled k-space with today\'s models, and learning the acquisition physics properly this time.',
     theme: 'ai',
     status: 'todo',
+    link: '/project',
   },
   {
     id: 'ai-mbti',
@@ -21,18 +22,10 @@ export const ITEMS: Curiosity[] = [
     status: 'todo',
   },
   {
-    id: 'ai-perception',
-    title: 'Perception systems (CV / ML)',
-    description:
-      'Camera + lidar + sensor fusion. Train something small that grounds language in real driving / scene frames.',
-    theme: 'ai',
-    status: 'todo',
-  },
-  {
     id: 'ai-vla',
-    title: 'Try a VLA model',
+    title: 'Try a vision-language-action model',
     description:
-      'Fine-tune something open like OpenVLA on a tiny task. See how brittle / un-brittle vision-language-action really is.',
+      'Fine-tune an open one like OpenVLA on a tiny task and ground it in real driving and street-scene frames. See how brittle vision, language and action really are once they meet a camera.',
     theme: 'ai',
     status: 'todo',
   },
@@ -48,7 +41,7 @@ export const ITEMS: Curiosity[] = [
     id: 'ai-conf',
     title: 'Visit AI conferences',
     description:
-      'NeurIPS / CVPR / ICRA / IROS. Pick one a year. Even better: submit a workshop paper, however small.',
+      'NeurIPS, CVPR, ICRA or IROS. Pick one a year and go in person: talks in the morning, posters in the afternoon, strangers\' research over dinner.',
     theme: 'ai',
     status: 'todo',
   },
@@ -56,15 +49,16 @@ export const ITEMS: Curiosity[] = [
     id: 'ai-paper',
     title: 'Write papers',
     description:
-      'Less reading, more writing. Workshop paper → main track → a sharp blog post that punches above its weight. One submission a year, even small.',
+      'Less reading, more writing. Workshop paper, then main track, then write-ups that punch above their weight; the embed2heights and flight-price write-ups on the site are a start. One submission a year, even a small one.',
     theme: 'ai',
     status: 'todo',
+    link: '/project',
   },
   {
     id: 'ai-leetcode',
     title: 'Stay sharp on coding (LeetCode habit)',
     description:
-      'Steady, not crammed. A few problems a week. Goal isn\'t grind — it\'s not letting the muscle atrophy. I keep a 100-page personal study guide (top patterns + Uber-style problems) — link below.',
+      'Steady, not crammed: a few problems a week so the muscle never wastes away. My 100-page study guide of top patterns and Uber-style problems is linked below.',
     theme: 'ai',
     status: 'todo',
     link: '/curiosity-map/uber_leetcode.pdf',
@@ -81,17 +75,18 @@ export const ITEMS: Curiosity[] = [
   // ─── Music ────────────────────────────────────────────────────────────
   {
     id: 'mus-vinyl',
-    title: 'Buy a vinyl player + start a collection',
+    title: 'Buy a vinyl player and start a collection',
     description:
-      'Album as a ritual, not a playlist. Looking for a starter turntable + speakers, and recommendations for first records.',
+      'The player is in, and the records live on my record shelf. Albums as a ritual, not a playlist; recommendations for the next ones are very welcome.',
     theme: 'music',
-    status: 'doing',
+    status: 'done',
+    link: '/records',
   },
   {
     id: 'mus-playlists',
-    title: 'Sort my Spotify + craft roadtrip playlists',
+    title: 'Sort my Spotify and craft road-trip playlists',
     description:
-      'Untangle the mega-playlist into properly-themed ones. Then curate roadtrip mixes — South America, Camino, anywhere with hours of road ahead.',
+      'Untangle the mega-playlist into properly themed ones, then curate road-trip mixes for South America and anywhere else with hours of road ahead.',
     theme: 'music',
     status: 'todo',
   },
@@ -107,11 +102,12 @@ export const ITEMS: Curiosity[] = [
   // ─── Travel ───────────────────────────────────────────────────────────
   {
     id: 'trv-camino',
-    title: 'Walk Camino de Santiago this year',
+    title: 'Walk the Camino de Santiago',
     description:
-      'French Way most likely. ~30 days on foot. Bring the journal, leave the laptop.',
+      'Walked it. The compostela is in the bag, and it is half of the Dual Pilgrim certificate I am going for on the Kumano Kodo in March 2027.',
     theme: 'travel',
-    status: 'doing',
+    status: 'done',
+    link: '/curiosity-map/shikoku88.html',
   },
   {
     id: 'trv-southam',
@@ -157,7 +153,7 @@ export const ITEMS: Curiosity[] = [
     id: 'trv-interrail',
     title: 'Plan interrail trips',
     description:
-      'Slow Europe by rail. Bring a book, swap cities every few days, no overnight flights. Probably summer routes — Lisbon → Porto → San Sebastián, or a Balkans loop.',
+      'Slow Europe by rail: a book, a new city every few days, no flights. Probably summer routes, Lisbon to Porto to San Sebastián, or a Balkans loop.',
     theme: 'travel',
     status: 'todo',
   },
@@ -165,15 +161,16 @@ export const ITEMS: Curiosity[] = [
     id: 'trv-allcontinents',
     title: 'Step on all 7 continents',
     description:
-      'Antarctica is the final boss. No schedule, no rush — each one whenever the wind blows that way.',
+      'Three down: Asia, Europe and Australia. Africa (Tunisia) and South America are next on this map, and Antarctica is the final boss. No schedule, no rush.',
     theme: 'travel',
-    status: 'todo',
+    status: 'doing',
+    link: '/travel',
   },
   {
     id: 'trv-cargo',
     title: 'Take a cargo ship across an ocean',
     description:
-      'Two weeks at sea, no wifi, just books and the wake. Nobody does this anymore — that\'s exactly the point.',
+      'Two weeks at sea, no wifi, just books and the wake. Hardly anyone travels this way any more, which is exactly the point.',
     theme: 'travel',
     status: 'todo',
   },
@@ -236,12 +233,21 @@ export const ITEMS: Curiosity[] = [
     status: 'todo',
   },
 
-  // ─── Travel · Shikoku 88 (Japan Camino) ──────
+  // ─── Travel · Japan 2027: Kumano Kodo and Shikoku 88 ──────
+  {
+    id: 'shi-kumano',
+    title: 'Walk the Kumano Kodo',
+    description:
+      'The Nakahechi route to the three Grand Shrines, four walking days in March 2027, just before Shikoku. With the Camino already walked, it earns the Dual Pilgrim certificate at Kumano Hongū Taisha.',
+    theme: 'travel',
+    status: 'todo',
+    link: '/curiosity-map/shikoku88.html',
+  },
   {
     id: 'shi-section',
-    title: 'Walk a section of the Shikoku 88-temple pilgrimage',
+    title: 'Walk all 88 temples of the Shikoku pilgrimage',
     description:
-      'In the white hakui and conical sugegasa hat, walking stick in hand. Even one of the four prefectures is enough. Get the nōkyōchō stamp book — every temple\'s seal. Detailed pilgrim notes linked below.',
+      'Planned for 2027 in two parts: temples 1 to 23 on foot through the cherry blossom in spring, then 24 to 88 in the autumn leaves, walking the dense stretches and taking the bus or train across the empty ones. White hakui, sugegasa hat and a nōkyōchō for every temple\'s seal. The full plan is in my pilgrim\'s notes.',
     theme: 'travel',
     status: 'todo',
     link: '/curiosity-map/shikoku88.html',
@@ -258,7 +264,7 @@ export const ITEMS: Curiosity[] = [
     id: 'shi-dogo',
     title: 'Soak at Dōgo Onsen',
     description:
-      'Oldest hot spring in Japan — 3,000 years of bathing. Matsuyama, Ehime. Best done as the reward at the end of a Henro stretch, body tired, robe loose.',
+      'One of Japan\'s oldest hot springs, said to be 3,000 years old, in Matsuyama, Ehime. Best as the reward at the end of an autumn henro stretch: body tired, robe loose.',
     theme: 'travel',
     status: 'todo',
   },
@@ -292,7 +298,7 @@ export const ITEMS: Curiosity[] = [
     id: 'tun-hammam',
     title: 'Scrub at a traditional hammam',
     description:
-      'Steam, kese mitt, a stranger\'s rough hands, layers of skin I didn\'t know I had. Awkward at first, like new. Walk out lighter than I arrived.',
+      'Steam, a kessa glove, a stranger\'s rough hands, layers of skin I did not know I had. Awkward at first, then new. Walk out lighter than I arrived.',
     theme: 'travel',
     status: 'todo',
   },
@@ -328,7 +334,7 @@ export const ITEMS: Curiosity[] = [
     id: 'mak-printer',
     title: 'Buy a 3D printer',
     description:
-      'Bambu A1 mini is the obvious pick. Print only useful things for the first month before letting myself print Yodas.',
+      'A Bambu A1 mini is the obvious pick. The first month prints only useful things for the house: cable holders, drawer dividers, odd brackets, every "I wish there was a thing for…" itch. Yodas after that.',
     theme: 'making',
     status: 'todo',
   },
@@ -360,17 +366,9 @@ export const ITEMS: Curiosity[] = [
     id: 'mak-house',
     title: 'Renovate the house, room by room',
     description:
-      'Just bought it. Kitchen first, then bathrooms. Live with it for a while before deciding the rest. No rush.',
+      'Kitchen first, then the bathrooms. Live with the rest for a while before deciding. No rush.',
     theme: 'making',
     status: 'doing',
-  },
-  {
-    id: 'mak-house-print',
-    title: 'Print useful things for the house',
-    description:
-      'Cable holders, drawer dividers, weird brackets. Once the printer arrives, scratch every "I wish there was a thing for…" itch.',
-    theme: 'making',
-    status: 'todo',
   },
   {
     id: 'mak-treehouse',
@@ -420,7 +418,7 @@ export const ITEMS: Curiosity[] = [
     id: 'mov-rapier',
     title: 'Stay in rapier, enter a tournament',
     description:
-      'Already in. Goal this year: one tournament, regardless of result. Show up, get hit, learn.',
+      'Already training. The goal is one tournament, whatever the result: show up, get hit, learn.',
     theme: 'movement',
     status: 'doing',
   },
@@ -458,9 +456,9 @@ export const ITEMS: Curiosity[] = [
   },
   {
     id: 'mov-kickbox',
-    title: 'Try kickboxing',
+    title: 'Try kickboxing, then spar at an open mat',
     description:
-      'Trial class somewhere local. Sweat ≠ drudgery. See if it scratches the rapier itch in a different shape.',
+      'A trial kickboxing class first, to see if it scratches the rapier itch in a different shape. Then an open mat at a judo or BJJ dojo: get thrown, get back up, laugh about it, bow at the end.',
     theme: 'movement',
     status: 'todo',
   },
@@ -505,22 +503,6 @@ export const ITEMS: Curiosity[] = [
     status: 'todo',
   },
   {
-    id: 'mov-tournament',
-    title: 'Enter a tournament for anything and lose hilariously',
-    description:
-      'Pub quiz, eating contest, chess club open, karaoke battle. Show up, give everything, get destroyed, buy the winner a beer.',
-    theme: 'movement',
-    status: 'todo',
-  },
-  {
-    id: 'mov-spar',
-    title: 'Spar a stranger at a dojo',
-    description:
-      'Judo, BJJ, boxing — whichever has an open mat. Get thrown, get back up, laugh about it. Bow at the end.',
-    theme: 'movement',
-    status: 'todo',
-  },
-  {
     id: 'mov-marine',
     title: 'Find an ex-Marine and learn to fight from him',
     description:
@@ -558,9 +540,10 @@ export const ITEMS: Curiosity[] = [
     id: 'soc-strangers',
     title: 'Talk to one new person a week',
     description:
-      'Coffee shop chat, gym hello, party intro. Keep it light. No agenda.',
+      'A coffee-shop chat, a hello at the gym, an introduction at a party. Keep it light, no agenda. The Icebreaker cards on this site have opening lines and a five-minute dare.',
     theme: 'social',
     status: 'todo',
+    link: '/icebreaker/',
   },
   {
     id: 'soc-board',
@@ -583,6 +566,14 @@ export const ITEMS: Curiosity[] = [
     title: 'Karaoke until 3am with strangers',
     description:
       'A bar, a song I love, a room that joins in by the chorus. Bonus points if I make a friend by the encore.',
+    theme: 'social',
+    status: 'todo',
+  },
+  {
+    id: 'soc-tournament',
+    title: 'Enter a tournament for anything and lose hilariously',
+    description:
+      'Pub quiz, eating contest, a chess club open. Show up, give everything, get destroyed, buy the winner a beer.',
     theme: 'social',
     status: 'todo',
   },
