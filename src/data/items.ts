@@ -107,7 +107,7 @@ export const ITEMS: Curiosity[] = [
       'Walked it. The compostela is in the bag, and it is half of the Dual Pilgrim certificate I am going for on the Kumano Kodo in March 2027.',
     theme: 'travel',
     status: 'done',
-    link: '/curiosity-map/shikoku88.html',
+    link: '/camino-de-santiago',
   },
   {
     id: 'trv-southam',
@@ -137,9 +137,10 @@ export const ITEMS: Curiosity[] = [
     id: 'trv-journal',
     title: 'Travel journal with strangers\' entries',
     description:
-      'A small notebook I hand to people I meet — let them write whatever. A paper trail of encounters instead of a camera roll of selfies.',
+      'A small notebook I hand to people I meet so they can write whatever they like, in their own language. A paper trail of encounters instead of a camera roll of selfies. It started on the Camino in 2026.',
     theme: 'travel',
-    status: 'todo',
+    status: 'doing',
+    link: '/travel-diary',
   },
   {
     id: 'trv-artifacts',
@@ -241,7 +242,7 @@ export const ITEMS: Curiosity[] = [
       'The Nakahechi route to the three Grand Shrines, four walking days in March 2027, just before Shikoku. With the Camino already walked, it earns the Dual Pilgrim certificate at Kumano Hongū Taisha.',
     theme: 'travel',
     status: 'todo',
-    link: '/curiosity-map/shikoku88.html',
+    link: '/shikoku-88-trip-planning',
   },
   {
     id: 'shi-section',
@@ -250,7 +251,7 @@ export const ITEMS: Curiosity[] = [
       'Planned for 2027 in two parts: temples 1 to 23 on foot through the cherry blossom in spring, then 24 to 88 in the autumn leaves, walking the dense stretches and taking the bus or train across the empty ones. White hakui, sugegasa hat and a nōkyōchō for every temple\'s seal. The full plan is in my pilgrim\'s notes.',
     theme: 'travel',
     status: 'todo',
-    link: '/curiosity-map/shikoku88.html',
+    link: '/shikoku-88-trip-planning',
   },
   {
     id: 'shi-temple-stay',
@@ -552,6 +553,7 @@ export const ITEMS: Curiosity[] = [
       'Build the shelf. Heavy euros, light party games, and at least one weird thing. Excuse to host more nights.',
     theme: 'social',
     status: 'todo',
+    link: '/board-games',
   },
   {
     id: 'soc-dinner',
