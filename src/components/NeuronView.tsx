@@ -27,14 +27,15 @@ interface Props {
 
 export default function NeuronView({ items }: Props) {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(() => new Set());
-  const [previewId, setPreviewId] = useState<string | null>(null);
+  // The last curiosity clicked on; its description shows under the list.
+  const [focusId, setFocusId] = useState<string | null>(null);
   const [hoveredRegion, setHoveredRegion] = useState<RegionId | null>(null);
 
   const itemById = useMemo(() => new Map(items.map((it) => [it.id, it])), [items]);
   const selectedKey = useMemo(() => [...selectedIds].sort().join(','), [selectedIds]);
 
-  // Each selected (and the hovered) quest contributes its theme colour to the
-  // regions it trains. More quests selected → more regions light up.
+  // Each selected quest contributes its theme colour to the regions it trains.
+  // More quests selected → more regions light up. Hovering changes nothing.
   const { levelOf, colorOf } = useMemo(() => {
     const contrib = new Map<RegionId, string[]>();
     const add = (theme: ThemeId) => {
@@ -47,10 +48,6 @@ export default function NeuronView({ items }: Props) {
     };
     for (const id of selectedIds) {
       const it = itemById.get(id);
-      if (it) add(it.theme);
-    }
-    if (previewId && !selectedIds.has(previewId)) {
-      const it = itemById.get(previewId);
       if (it) add(it.theme);
     }
 
@@ -68,7 +65,7 @@ export default function NeuronView({ items }: Props) {
     }
     return { levelOf: level, colorOf: color };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedKey, previewId, itemById]);
+  }, [selectedKey, itemById]);
 
   const total = ALL_REGION_IDS.length;
   const firing = ALL_REGION_IDS.filter((id) => levelOf[id] > 0);
@@ -90,6 +87,25 @@ export default function NeuronView({ items }: Props) {
       return next;
     });
   }
+
+  function toggleItem(itemId: string) {
+    const wasOn = selectedIds.has(itemId);
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(itemId)) next.delete(itemId);
+      else next.add(itemId);
+      return next;
+    });
+    if (!wasOn) setFocusId(itemId);
+    else if (focusId === itemId) setFocusId(null);
+  }
+
+  function clearAll() {
+    setSelectedIds(new Set());
+    setFocusId(null);
+  }
+
+  const focused = focusId && selectedIds.has(focusId) ? itemById.get(focusId) ?? null : null;
 
   const hoveredRegionInfo = hoveredRegion ? REGION_BY_ID[hoveredRegion] : null;
 
@@ -131,7 +147,7 @@ export default function NeuronView({ items }: Props) {
         <div className="border-b border-rulesoft p-4">
           <h2 className="m-0 text-[1.5rem]">Rewire the network</h2>
           <p className="mb-0 mt-1.5 font-serif text-[0.95rem] leading-snug text-ink2">
-            Tap a theme to fire the regions its curiosities train. Stack several and watch more of the brain light up.
+            Tap curiosities, or a whole theme, to fire the regions they train. Stack several and watch more of the brain light up.
             Variety is how it stays plastic and sharp.
           </p>
 
@@ -141,21 +157,11 @@ export default function NeuronView({ items }: Props) {
               <span className="font-semibold tabular-nums text-winedeep">{firing.length}/{total}</span> firing
             </span>
             {selectedIds.size > 0 && (
-              <button type="button" onClick={() => setSelectedIds(new Set())} className="font-semibold text-winedeep underline decoration-wine/45 underline-offset-[0.18em] hover:text-wine">
+              <button type="button" onClick={clearAll} className="font-semibold text-winedeep underline decoration-wine/45 underline-offset-[0.18em] hover:text-wine">
                 Clear
               </button>
             )}
           </div>
-
-          {firing.length === 0 ? (
-            <p className="mb-0 mt-2 font-serif text-[0.9rem] italic text-ink2">Nothing firing yet. Tap a theme to light it up.</p>
-          ) : dark.length > 0 ? (
-            <p className="mb-0 mt-2 font-serif text-[0.9rem] italic text-ink2">
-              Still dark: {dark.map((id) => REGION_BY_ID[id].name).join(', ')}.
-            </p>
-          ) : (
-            <p className="mb-0 mt-2 font-serif text-[0.9rem] italic text-winedeep">Whole brain lit. Full workout.</p>
-          )}
         </div>
 
         <div className="min-h-0 flex-1 overflow-y-auto p-2">
@@ -183,9 +189,10 @@ export default function NeuronView({ items }: Props) {
                     const isSel = selectedIds.has(it.id);
                     return (
                       <li key={it.id}>
-                        <div
-                          onMouseEnter={() => setPreviewId(it.id)}
-                          onMouseLeave={() => setPreviewId((p) => (p === it.id ? null : p))}
+                        <button
+                          type="button"
+                          onClick={() => toggleItem(it.id)}
+                          aria-pressed={isSel}
                           className={`flex w-full items-center gap-2.5 px-3 py-1.5 text-left text-[0.92rem] transition-colors duration-200 ${
                             isSel ? 'bg-winedeep/[0.08] text-ink' : 'text-ink2 hover:bg-winedeep/[0.05]'
                           }`}
@@ -201,7 +208,7 @@ export default function NeuronView({ items }: Props) {
                             )}
                           </span>
                           <span className="truncate">{it.title}</span>
-                        </div>
+                        </button>
                       </li>
                     );
                   })}
@@ -209,6 +216,28 @@ export default function NeuronView({ items }: Props) {
               </div>
             );
           })}
+        </div>
+
+        {/* Below the list, so its changing height never moves the rows. */}
+        <div className="max-h-[45%] shrink-0 overflow-y-auto border-t border-rulesoft px-4 py-3 lg:h-[11.5rem] lg:max-h-none" aria-live="polite">
+          {focused && (
+            <div className="mb-2.5 border-b border-rulesoft pb-2.5">
+              <p className="m-0 text-[0.95rem] font-semibold text-ink">{focused.title}</p>
+              <p className="m-0 mt-0.5 font-serif text-[0.9rem] leading-snug text-ink2">{focused.description}</p>
+              <p className="m-0 mt-1 font-serif text-[0.85rem] italic text-wine">
+                Trains: {THEME_REGIONS[focused.theme].map((id) => REGION_BY_ID[id].name).join(', ')}.
+              </p>
+            </div>
+          )}
+          {firing.length === 0 ? (
+            <p className="m-0 font-serif text-[0.9rem] italic text-ink2">Nothing firing yet. Tap a curiosity or a theme to light it up.</p>
+          ) : dark.length > 0 ? (
+            <p className="m-0 font-serif text-[0.9rem] italic text-ink2">
+              Still dark: {dark.map((id) => REGION_BY_ID[id].name).join(', ')}.
+            </p>
+          ) : (
+            <p className="m-0 font-serif text-[0.9rem] italic text-winedeep">Whole brain lit. Full workout.</p>
+          )}
         </div>
       </aside>
     </div>
